@@ -6,16 +6,71 @@ import {
   signOut,
   onAuthStateChanged,
   User,
-  Auth,
 } from "firebase/auth";
-import { auth } from "./config";
+import { auth, firestore } from "./config";
+import {
+  doc,
+  setDoc,
+  getDoc,
+  collection,
+  getDocs,
+  updateDoc,
+} from "firebase/firestore";
 
-// Sign in with Google
+// Get user document from Firestore
+export const getUserDocument = async (uid: string) => {
+  if (!uid) return null;
+  try {
+    const userDocRef = doc(firestore, `users/${uid}`);
+    const userDoc = await getDoc(userDocRef);
+    return userDoc.exists() ? { uid, ...userDoc.data() } : null;
+  } catch (error) {
+    console.error("Error fetching user document: ", error);
+    return null;
+  }
+};
+
+// Get all users from Firestore
+export const getAllUsers = async () => {
+  try {
+    const usersCollection = collection(firestore, "users");
+    const userSnapshot = await getDocs(usersCollection);
+    const userList = userSnapshot.docs.map((doc) => ({
+      uid: doc.id,
+      ...doc.data(),
+    }));
+    return userList;
+  } catch (error) {
+    console.error("Error fetching users: ", error);
+    return [];
+  }
+};
+
+// Update user role
+export const updateUserRole = async (uid: string, role: string) => {
+  try {
+    const userDocRef = doc(firestore, "users", uid);
+    await updateDoc(userDocRef, { role });
+  } catch (error) {
+    console.error("Error updating user role: ", error);
+  }
+};
+
+// Sign in with Google and create user document
 export const signInWithGoogle = async () => {
   const provider = new GoogleAuthProvider();
   try {
     const result = await signInWithPopup(auth, provider);
-    return result.user;
+    const user = result.user;
+    // Create user document if it doesn't exist
+    const userDoc = await getUserDocument(user.uid);
+    if (!userDoc) {
+      await setDoc(doc(firestore, "users", user.uid), {
+        email: user.email,
+        role: "user",
+      });
+    }
+    return user;
   } catch (error) {
     console.error("Error signing in with Google: ", error);
     return null;
@@ -33,11 +88,17 @@ export const signInWithEmail = async (email, password) => {
   }
 };
 
-// Register with email and password
+// Register with email and password and create user document
 export const registerWithEmail = async (email, password) => {
   try {
     const result = await createUserWithEmailAndPassword(auth, email, password);
-    return result.user;
+    const user = result.user;
+    // Create user document
+    await setDoc(doc(firestore, "users", user.uid), {
+      email: user.email,
+      role: "user",
+    });
+    return user;
   } catch (error) {
     console.error("Error registering with email: ", error);
     return null;

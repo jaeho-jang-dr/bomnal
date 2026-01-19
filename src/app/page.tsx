@@ -6,6 +6,7 @@ import { signOutUser } from "@/lib/firebase/auth";
 import { CartIcon } from "@/components/cart/CartIcon";
 import { CartView } from "@/components/cart/CartView";
 import { useCartStore } from "@/store/cartStore";
+import { HeroVideoBackground } from "@/components/home/HeroVideoBackground";
 
 // Dummy product data for demonstration
 const products = [
@@ -90,39 +91,30 @@ export default function Home() {
 
         {/* Hero Section */}
         <header className="relative w-full overflow-hidden">
-        <div className="relative h-[420px] w-full">
-          <div
-            className="absolute inset-0 bg-gray-200"
-            data-alt="Senior couple walking happily in a park with autumn leaves"
-            style={{
-              backgroundImage:
-                'url("https://lh3.googleusercontent.com/aida-public/AB6AXuAwLKZgOWUF3pmh0rDPPbUJWJFEK7cKk9fQwcGcz-AhaiMGx5fkpnJKdBL9ikS-2Kes8wx9ciw7O9dYCBZfWJALrXzmQ36jB7zKm0mfbzmOlA9v4oDAFS5ewRFQc__VB6LdFtnT4rSl-5FWKGi_jzDnhugRjwRnS8FrZkvsmFckD134yvsTyU343CCSqnq8Uy6ImyLbOLjxBOPttiKtaEmr5J8_M5J5bhjqRj_dNx784vopZbvvQgyGbHQRxumpkz66M0UzCrIOzI8")',
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          ></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-          <div className="absolute bottom-0 left-0 right-0 p-6 pb-10 flex flex-col items-start gap-4">
-            <div className="inline-flex items-center rounded-full border border-white/20 bg-white/20 backdrop-blur-sm px-3 py-1">
-              <span className="text-xs font-medium text-white tracking-wide uppercase">
-                New Collection
-              </span>
+          <div className="relative h-[420px] w-full">
+            <HeroVideoBackground />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent z-30"></div>
+            <div className="absolute bottom-0 left-0 right-0 p-6 pb-10 flex flex-col items-start gap-4 z-40">
+              <div className="inline-flex items-center rounded-full border border-white/20 bg-white/20 backdrop-blur-sm px-3 py-1">
+                <span className="text-xs font-medium text-white tracking-wide uppercase">
+                  New Collection
+                </span>
+              </div>
+              <h2 className="text-4xl font-extrabold text-white leading-[1.1] tracking-tight max-w-[80%]">
+                Expert Care for Your Joints
+              </h2>
+              <p className="text-lg text-gray-200 font-medium max-w-[90%]">
+                Orthopedic solutions curated by Dr. Smith for your daily comfort.
+              </p>
+              <button className="mt-2 flex items-center gap-2 bg-primary hover:bg-primary-dark text-white px-6 py-3.5 rounded-xl font-bold text-base shadow-lg transition-transform active:scale-95 cursor-pointer">
+                Shop Collection
+                <span className="material-symbols-outlined text-[20px]">
+                  arrow_forward
+                </span>
+              </button>
             </div>
-            <h2 className="text-4xl font-extrabold text-white leading-[1.1] tracking-tight max-w-[80%]">
-              Expert Care for Your Joints
-            </h2>
-            <p className="text-lg text-gray-200 font-medium max-w-[90%]">
-              Orthopedic solutions curated by Dr. Smith for your daily comfort.
-            </p>
-            <button className="mt-2 flex items-center gap-2 bg-primary hover:bg-primary-dark text-white px-6 py-3.5 rounded-xl font-bold text-base shadow-lg transition-transform active:scale-95 cursor-pointer">
-              Shop Collection
-              <span className="material-symbols-outlined text-[20px]">
-                arrow_forward
-              </span>
-            </button>
           </div>
-        </div>
-      </header>
+        </header>
         {/* Category Chips (Horizontal Scroll) */}
         <section className="py-6 border-b border-gray-100 dark:border-gray-800">
           <div className="flex gap-3 px-4 overflow-x-auto no-scrollbar snap-x">
