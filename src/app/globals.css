@@ -1,148 +1,119 @@
 @import "tailwindcss";
 
 @theme {
-  /* ===== 기본 컬러 시스템 ===== */
-  --color-primary: #6c4f37;
-  --color-primary-hover: #5a4129;
-  --color-primary-active: #4a3321;
-  --color-primary-light: #8b6d52;
+  /* ===== Custom Color System ===== */
+  /* Home Theme */
+  --color-primary: #507e95;
+  --color-primary-dark: #3a5d6e;
+  --color-secondary: #EBE7DF;
+  --color-background-light: #FBF8F5;
+  --color-background-dark: #21262c;
+  --color-text-main: #121517;
+  --color-text-muted: #657781;
 
-  --color-background-light: #fdf8f3;
-  --color-background-dark: #1c1916;
-  --color-warm-cream: #fcf5ed;
-  --color-oak-border: #e3e0de;
-  --color-sage-green: #6f8b70;
+  /* Grid/Shop Theme */
+  --color-grid-primary: #17cfcf;
+  --color-grid-primary-dark: #12a5a5;
+  --color-grid-bg-light: #f8f7f7;
+  --color-background-paper: #FFFCF9;
+  --color-text-secondary: #5C6F6F;
+  --color-gold-foil: #D4AF37;
+  --color-pad-blue: #e8f4fc;
 
-  /* ===== 시맨틱 컬러 (상태 표현) ===== */
-  --color-success: #6f8b70;
-  --color-success-light: #8fa390;
-  --color-error: #c44536;
-  --color-error-light: #d67064;
-  --color-warning: #e8a542;
-  --color-warning-light: #f0bb6e;
-  --color-info: #5b8dbd;
-  --color-info-light: #7ea5cd;
+  /* Fonts */
+  --font-display: var(--font-manrope), sans-serif;
+  --font-signature: cursive, serif;
+  --font-handwriting: var(--font-gloria), cursive;
 
-  /* ===== 텍스트 컬러 (접근성 대비율 고려) ===== */
-  --color-text-primary: #161413;
-  --color-text-secondary: #6c4f37;
-  --color-text-tertiary: #a08878;
-  --color-text-disabled: #ccc0b7;
+  /* Border Radius */
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-3xl: 1.5rem;
 
-  --color-text-primary-dark: #f7f7f6;
-  --color-text-secondary-dark: #e3d5c8;
-  --color-text-tertiary-dark: #b8a89a;
-  --color-text-disabled-dark: #5a4f47;
-
-  /* ===== 타이포그래피 시스템 (시니어 친화) ===== */
-  --font-display: var(--font-plus-jakarta), var(--font-noto-sans-kr), sans-serif;
-
-  --font-size-xs: 1rem;       /* 16px - 최소 크기 */
-  --font-size-sm: 1.125rem;   /* 18px - 본문 */
-  --font-size-base: 1.25rem;  /* 20px - 강조 본문 */
-  --font-size-lg: 1.5rem;     /* 24px - 소제목 */
-  --font-size-xl: 2rem;       /* 32px - 제목 */
-  --font-size-2xl: 2.5rem;    /* 40px - 대제목 */
-
-  --line-height-tight: 1.25;
-  --line-height-normal: 1.5;
-  --line-height-relaxed: 1.75;
-  --line-height-loose: 2;
-
-  /* ===== 간격 시스템 ===== */
-  --spacing-xs: 0.5rem;    /* 8px */
-  --spacing-sm: 0.75rem;   /* 12px */
-  --spacing-md: 1rem;      /* 16px */
-  --spacing-lg: 1.5rem;    /* 24px */
-  --spacing-xl: 2rem;      /* 32px */
-  --spacing-2xl: 3rem;     /* 48px */
-
-  /* ===== Border Radius ===== */
-  --radius-sm: 0.5rem;   /* 8px */
-  --radius-md: 0.75rem;  /* 12px */
-  --radius-lg: 1rem;     /* 16px */
-  --radius-xl: 1.5rem;   /* 24px */
-  --radius-2xl: 2rem;    /* 32px */
-  --radius-full: 9999px;
-
-  /* ===== Shadow System ===== */
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
-
-  /* ===== Touch Target Sizes (44x44px 최소) ===== */
-  --touch-target-min: 44px;
-  --touch-target-comfortable: 56px;
-  --touch-target-large: 64px;
-
-  /* ===== Transition ===== */
-  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  /* Shadows */
+  --shadow-soft: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+  
+  /* Background Images */
+  --image-paper-texture: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZmZmIi8+CjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiNDQ0MiIG9wYWNpdHk9IjAuMSIvPgo8L3N2Zz4=');
+  --image-grid-pattern: linear-gradient(to right, rgba(23, 207, 207, 0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(23, 207, 207, 0.05) 1px, transparent 1px);
 }
 
+/* Custom CSS classes from design */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Signature simulation */
+.signature-text {
+    font-family: 'Brush Script MT', cursive;
+    transform: rotate(-5deg);
+}
+
+/* Prescription Pad Styles */
+.paper-shadow {
+    box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.04);
+}
+
+.handwritten-line {
+    position: relative;
+}
+.handwritten-line::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #e2e8f0;
+    opacity: 0.6;
+}
+
+.rx-pad-card {
+    background-color: #ffffff;
+    background-image: 
+        linear-gradient(#e1f5fe 1px, transparent 1px),
+        linear-gradient(90deg, #e1f5fe 1px, transparent 1px);
+    background-size: 20px 20px, 20px 20px;
+    background-position: -1px -1px, -1px -1px;
+    box-shadow: 
+        0 1px 1px rgba(0,0,0,0.1), 
+        0 10px 0 -5px #ffffff, 
+        0 10px 1px -4px rgba(0,0,0,0.1), 
+        0 20px 0 -10px #ffffff, 
+        0 20px 1px -9px rgba(0,0,0,0.1);
+    border-top: 8px solid #3b82f6;
+    position: relative;
+}
+
+.gold-cross {
+    background: linear-gradient(135deg, #FDD835 0%, #FBC02D 50%, #F9A825 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0px 1px 2px rgba(180, 130, 0, 0.3);
+    filter: drop-shadow(0 1px 1px rgba(0,0,0,0.1));
+}
+
+.rx-vignette {
+    background: radial-gradient(circle at center, transparent 30%, rgba(255,255,255,0.8) 100%);
+}
+
+/* Base Styles */
 body {
-  @apply bg-background-light dark:bg-background-dark text-text-primary dark:text-text-primary-dark min-h-screen;
-  background-image: radial-gradient(#6c4f3711 0.5px, transparent 0.5px), radial-gradient(#6c4f3711 0.5px, #fdf8f3 0.5px);
-  background-size: 20px 20px;
-  background-position: 0 0, 10px 10px;
+    background-color: var(--color-background-light);
+    color: var(--color-text-main);
 }
-
 .dark body {
-  background-image: radial-gradient(#ffffff0a 0.5px, transparent 0.5px), radial-gradient(#ffffff0a 0.5px, #1c1916 0.5px);
-}
-
-/* 다크모드 최적화 */
-@media (prefers-color-scheme: dark) {
-  .dark {
-    color-scheme: dark;
-  }
-
-  ::-webkit-scrollbar {
-    width: 12px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: #1c1916;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: #6c4f37;
-    border-radius: 6px;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: #8b6d52;
-  }
-}
-
-/* 포커스 스타일 일관성 */
-*:focus-visible {
-  outline: 4px solid rgba(108, 79, 55, 0.3);
-  outline-offset: 2px;
-}
-
-/* 고대비 모드 지원 */
-@media (prefers-contrast: high) {
-  body {
-    --color-primary: #4a3321;
-    --color-text-primary: #000000;
-  }
-
-  .dark body {
-    --color-primary: #8b6d52;
-    --color-text-primary-dark: #ffffff;
-  }
-}
-
-/* 애니메이션 감소 설정 */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
+    background-color: var(--color-background-dark);
 }

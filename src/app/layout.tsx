@@ -1,23 +1,24 @@
+import { AuthProvider } from "@/context/AuthContext";
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Noto_Sans_KR } from "next/font/google";
+import { Manrope, Gloria_Hallelujah } from "next/font/google";
 import "./globals.css";
 
-const plusJakartaSans = Plus_Jakarta_Sans({
+const manrope = Manrope({
   subsets: ["latin"],
-  variable: "--font-plus-jakarta",
+  variable: "--font-manrope",
   display: "swap",
 });
 
-const notoSansKR = Noto_Sans_KR({
+const gloria = Gloria_Hallelujah({
+  weight: "400",
   subsets: ["latin"],
-  weight: ["100", "300", "400", "500", "700", "900"],
-  variable: "--font-noto-sans-kr",
+  variable: "--font-gloria",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "온기상점",
-  description: "시니어를 위한 따뜻한 쇼핑몰",
+  title: "Senior Shop",
+  description: "Surgeon-Led Senior Shop",
 };
 
 export default function RootLayout({
@@ -26,7 +27,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko">
+    <html lang="en">
       <head>
         <link
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
@@ -34,9 +35,9 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${plusJakartaSans.variable} ${notoSansKR.variable} antialiased font-display`}
+        className={`${manrope.variable} ${gloria.variable} antialiased font-display`}
       >
-        {children}
+        <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
   );
