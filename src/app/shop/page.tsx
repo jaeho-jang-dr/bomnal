@@ -1,4 +1,12 @@
+"use client";
+
+import { useCartStore } from "@/store/cartStore";
+import Link from "next/link";
+import { CartBadge } from "@/components/layout/CartBadge";
+
 export default function Shop() {
+    const addItem = useCartStore((state) => state.addItem);
+
     return (
         <div className="relative flex h-full min-h-screen w-full flex-col max-w-md mx-auto bg-grid-bg-light dark:bg-background-dark shadow-2xl overflow-hidden border-x border-gray-100 dark:border-gray-800 font-display">
             <header className="sticky top-0 z-50 bg-grid-bg-light/95 dark:bg-background-dark/95 backdrop-blur-md transition-colors duration-200">
@@ -19,17 +27,15 @@ export default function Shop() {
                             Prescription Pad
                         </h2>
                     </div>
-                    <button className="relative flex size-10 items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-pointer">
+                    <Link href="/cart" className="relative flex size-10 items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-pointer">
                         <span
                             className="material-symbols-outlined text-text-main"
                             style={{ fontSize: "24px" }}
                         >
                             shopping_bag
                         </span>
-                        <span className="absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-grid-primary text-[10px] font-bold text-white">
-                            2
-                        </span>
-                    </button>
+                        <CartBadge />
+                    </Link>
                 </div>
                 <div className="w-full overflow-x-auto hide-scrollbar pb-4 pt-2 px-4">
                     <div className="flex gap-3 min-w-max">
@@ -108,6 +114,15 @@ export default function Shop() {
                                     </span>
                                 </div>
                                 <button
+                                    onClick={() => {
+                                        addItem({
+                                            id: 'knee-brace-pro',
+                                            name: 'Knee Brace Pro',
+                                            price: 45.00,
+                                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuC3DhggKNGkhcfIpnM8Py6dPQDcnmNq03BdwDgH21RtTAlAEnyQK4-8XUK5Dh7GMsjjTbtkVrGtBpbb08DS8xmkWhVH0Fvsb8d4jMT9mS0J7_3XOudygq19ou157SfcUuq2AAD_seSDR-aZVF2lrCBy4RmPmmshQ85kD0Z634ubZtyvnchzcDylGclDEYsuesLX0ntYjQXmfkbld7KoATEePWlZAX2XX54OxNLC2sosr4eC13_4om3jzNWAZG82tZt0RZU0AU850uA"
+                                        });
+                                        window.alert('Knee Brace Pro이(가) 장바구니에 담겼습니다.');
+                                    }}
                                     aria-label="Add to cart"
                                     className="h-10 w-10 flex items-center justify-center rounded-xl bg-grid-primary hover:bg-grid-primary-dark text-white shadow-lg shadow-primary/20 transition-colors active:scale-95 cursor-pointer"
                                 >
@@ -152,7 +167,17 @@ export default function Shop() {
                                         $89.99
                                     </span>
                                 </div>
-                                <button className="h-10 w-10 flex items-center justify-center rounded-xl bg-grid-primary hover:bg-grid-primary-dark text-white shadow-lg shadow-primary/20 transition-colors active:scale-95 cursor-pointer">
+                                <button
+                                    onClick={() => {
+                                        addItem({
+                                            id: 'lumbar-support',
+                                            name: 'Lumbar Support',
+                                            price: 89.99,
+                                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBpyMdcrfRbebWK2QPxgffBBPSWj5zlwz5lDzbGvBY93VocFWl0NvgtdhnUwxHXpuOMNBD9JSwY3dFoyr4f65gnQtF-MHu4mU9IrSw_Ydatp2xYSOBLbIt0eQoKpMj4R-pP5KCcJzYopVIJh0jnu5_Iv9srQCP20GoriWfokWGbswMT8sZ5OyNLu_F35DUT57TpsqNN-kzvFb8-PuHFgT7XvtbkCTCcpGmmO-9Oh3RGuh2vk7pe-deKRaVz5LxpbR2ISCTm7ooFZ8c"
+                                        });
+                                        window.alert('Lumbar Support이(가) 장바구니에 담겼습니다.');
+                                    }}
+                                    className="h-10 w-10 flex items-center justify-center rounded-xl bg-grid-primary hover:bg-grid-primary-dark text-white shadow-lg shadow-primary/20 transition-colors active:scale-95 cursor-pointer">
                                     <span className="material-symbols-outlined text-xl font-bold">
                                         add
                                     </span>
@@ -194,7 +219,17 @@ export default function Shop() {
                                         $32.50
                                     </span>
                                 </div>
-                                <button className="h-10 w-10 flex items-center justify-center rounded-xl bg-grid-primary hover:bg-grid-primary-dark text-white shadow-lg shadow-primary/20 transition-colors active:scale-95 cursor-pointer">
+                                <button
+                                    onClick={() => {
+                                        addItem({
+                                            id: 'ortho-slippers',
+                                            name: 'Ortho Slippers',
+                                            price: 32.50,
+                                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDhtfXAc-qYUFQD3dnT-5nUMUcoPFM26pSgcwWWBFe-Kgf0OgisG5VpDufC7hWDKJSXMiF3bSrwYP2S9eH2hUiYiQI1Klvs3bqQBJp04UKm7yF4VEmwcQyH4l5zPja7nDfU358R50ZQZFjXfUV4UDO1gGYS9MjkTb3AxKapuKRRSx4o6NdgbdyoHlxNm2aqJeAHPDIkUqG4O-Ylbp6I1elNscetNVIKd3_0DfDLWva2EZPl-hysVF3JjbGyORreRYwBFTP2h08Gh4o"
+                                        });
+                                        window.alert('Ortho Slippers이(가) 장바구니에 담겼습니다.');
+                                    }}
+                                    className="h-10 w-10 flex items-center justify-center rounded-xl bg-grid-primary hover:bg-grid-primary-dark text-white shadow-lg shadow-primary/20 transition-colors active:scale-95 cursor-pointer">
                                     <span className="material-symbols-outlined text-xl font-bold">
                                         add
                                     </span>
@@ -236,7 +271,17 @@ export default function Shop() {
                                         $24.00
                                     </span>
                                 </div>
-                                <button className="h-10 w-10 flex items-center justify-center rounded-xl bg-grid-primary hover:bg-grid-primary-dark text-white shadow-lg shadow-primary/20 transition-colors active:scale-95 cursor-pointer">
+                                <button
+                                    onClick={() => {
+                                        addItem({
+                                            id: 'wrist-stabilizer',
+                                            name: 'Wrist Stabilizer',
+                                            price: 24.00,
+                                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCNcLFJxPMBGHCOBGS80jibnSGAzNZQQKa8qmz79dAH1FstJ7o_I-B-zioMD2k5TBcpAlR97B_luYuVLOmHbtjTMAs2A87-Q15GN9Rjw7iLYTX5tXhf2hLdFJADzuT9o3ggc2IC6b17X8cfzC6h99w4A8R6EORFqQxrRx2csJrT5XdcDuJNuFz5EortFD3-bTkuqW5r_jG_Cx75DA129c1ZHfCTdASjPeDmt-M_Fk3q3QhUIXeN0jOq5Hlv3uLVqkQ0zhhaLQitmAQ"
+                                        });
+                                        window.alert('Wrist Stabilizer이(가) 장바구니에 담겼습니다.');
+                                    }}
+                                    className="h-10 w-10 flex items-center justify-center rounded-xl bg-grid-primary hover:bg-grid-primary-dark text-white shadow-lg shadow-primary/20 transition-colors active:scale-95 cursor-pointer">
                                     <span className="material-symbols-outlined text-xl font-bold">
                                         add
                                     </span>
@@ -278,7 +323,17 @@ export default function Shop() {
                                         $15.00
                                     </span>
                                 </div>
-                                <button className="h-10 w-10 flex items-center justify-center rounded-xl bg-grid-primary hover:bg-grid-primary-dark text-white shadow-lg shadow-primary/20 transition-colors active:scale-95 cursor-pointer">
+                                <button
+                                    onClick={() => {
+                                        addItem({
+                                            id: 'flex-bands',
+                                            name: 'Flex Bands',
+                                            price: 15.00,
+                                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDw-fKa2OcfPPWroVCf1CGyuUNPEDxZyh_qNfO4ywIs_SBcdeO60xmmRixZla8TWXkWI-NR6FgCi8KDJ7ISavkqeW2yi_whFb68346Y7-6lJvjdQFX3sIcrz-USONwEx-9cCB99KCRW6etkmOvyQK-ltPXfzgohyGn6urKsQgZOl-VLzdSwTL-O_tP-WOV-LTjPwlt6ZjJDyrFqNJHlzi5mplG-xLiVL0s78KYRgDipN7jASHen93QYmQG_Hus1xfKtFEeym5PryyQ"
+                                        });
+                                        window.alert('Flex Bands이(가) 장바구니에 담겼습니다.');
+                                    }}
+                                    className="h-10 w-10 flex items-center justify-center rounded-xl bg-grid-primary hover:bg-grid-primary-dark text-white shadow-lg shadow-primary/20 transition-colors active:scale-95 cursor-pointer">
                                     <span className="material-symbols-outlined text-xl font-bold">
                                         add
                                     </span>
@@ -320,7 +375,17 @@ export default function Shop() {
                                         $55.00
                                     </span>
                                 </div>
-                                <button className="h-10 w-10 flex items-center justify-center rounded-xl bg-grid-primary hover:bg-grid-primary-dark text-white shadow-lg shadow-primary/20 transition-colors active:scale-95 cursor-pointer">
+                                <button
+                                    onClick={() => {
+                                        addItem({
+                                            id: 'heat-pad',
+                                            name: 'Heat Pad',
+                                            price: 55.00,
+                                            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCi6rr41lBqy5oRWcxRRHRyxZpNP7Ve_KXtgi7TvRXV_D9eUX0uxjlZrqCdZpzHQ5xu9Ah27lJIdOM-5xR2ZrEFKkewh8iL4tMIn9IxZtJfLpJ6eTASSvzZZRGiCT_H-jYQEPU_NdKq1Abcotbx3fjvwpB8_3TkpO556Qzaza9aKAMga8g2hsOfvI1c15jRP00HFBxG8LE4cWjzYpZbizMO_RU8-z3kkigtim5X-HsTi9S8L28NSVDOegnZVhbEb0JQvkrmiRGwDVI"
+                                        });
+                                        window.alert('Heat Pad이(가) 장바구니에 담겼습니다.');
+                                    }}
+                                    className="h-10 w-10 flex items-center justify-center rounded-xl bg-grid-primary hover:bg-grid-primary-dark text-white shadow-lg shadow-primary/20 transition-colors active:scale-95 cursor-pointer">
                                     <span className="material-symbols-outlined text-xl font-bold">
                                         add
                                     </span>
@@ -331,12 +396,7 @@ export default function Shop() {
                 </div>
                 <div className="mt-8 mb-6 p-6 rounded-2xl bg-white dark:bg-gray-800 paper-shadow border border-gray-100 dark:border-gray-700 relative overflow-hidden">
                     <div
-                        className="absolute inset-0 bg-white opacity-90 pointer-events-none"
-                        style={{
-                            backgroundImage:
-                                "radial-gradient(#e8f4fc 1px, transparent 1px)",
-                            backgroundSize: "10px 10px",
-                        }}
+                        className="absolute inset-0 bg-white opacity-90 pointer-events-none bg-pattern-dots"
                     ></div>
                     <div className="relative z-10 flex flex-col items-center text-center gap-3">
                         <div className="h-12 w-12 rounded-full bg-grid-primary/10 flex items-center justify-center text-grid-primary mb-1">
@@ -388,8 +448,8 @@ export default function Shop() {
                         href="#"
                     >
                         <span
-                            className="material-symbols-outlined fill-current"
-                            style={{ fontSize: "24px", fontVariationSettings: "'FILL' 1" }}
+                            className="material-symbols-outlined fill-current material-symbols-filled"
+                            style={{ fontSize: "24px" }}
                         >
                             storefront
                         </span>

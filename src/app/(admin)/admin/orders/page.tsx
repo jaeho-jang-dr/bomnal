@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { getOrders, updateOrderStatus } from '@/lib/firebase/firestore';
 
 interface Order {
@@ -13,14 +13,14 @@ interface Order {
 const AdminOrdersPage = () => {
   const [orders, setOrders] = useState<Order[]>([]);
 
-  const fetchOrders = async () => {
+  const fetchOrders = useCallback(async () => {
     const orderList = (await getOrders()) as Order[];
     setOrders(orderList);
-  };
+  }, []);
 
   useEffect(() => {
     fetchOrders();
-  }, []);
+  }, [fetchOrders]);
 
   const handleStatusChange = async (orderId: string, newStatus: string) => {
     await updateOrderStatus(orderId, newStatus);
@@ -47,6 +47,7 @@ const AdminOrdersPage = () => {
               <td className="py-2 px-4 border-b">${order.total}</td>
               <td className="py-2 px-4 border-b">
                 <select
+                  aria-label="Change order status"
                   value={order.status}
                   onChange={(e) => handleStatusChange(order.id, e.target.value)}
                   className="p-2 border rounded"

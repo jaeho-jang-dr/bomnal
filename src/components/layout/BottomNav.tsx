@@ -6,6 +6,7 @@ import { useAuthContext } from "@/context/AuthContext";
 import { useUIStore } from "@/store/uiStore";
 import { signOutUser } from "@/lib/firebase/auth"; // Correct import path based on page.tsx
 import { useState } from "react";
+import { CartBadge } from "@/components/layout/CartBadge";
 
 export const BottomNav = () => {
     const pathname = usePathname();
@@ -66,8 +67,7 @@ export const BottomNav = () => {
                             }`}
                     >
                         <span
-                            className={`material-symbols-outlined ${isActive("/") ? "filled" : ""}`}
-                            style={{ fontVariationSettings: isActive("/") ? "'FILL' 1" : "'FILL' 0" }}
+                            className={`material-symbols-outlined ${isActive("/") ? "filled material-symbols-filled" : ""}`}
                         >
                             home
                         </span>
@@ -84,11 +84,22 @@ export const BottomNav = () => {
                         <span className="text-[10px] font-medium">쇼핑</span>
                     </Link>
 
-                    {/* Advice Button (Placeholder) */}
-                    <button className="flex flex-col items-center gap-1 p-2 text-text-muted hover:text-primary transition-colors cursor-pointer">
-                        <span className="material-symbols-outlined">menu_book</span>
-                        <span className="text-[10px] font-medium">건강팁</span>
-                    </button>
+                    {/* Cart Button */}
+                    <Link
+                        href="/cart"
+                        className={`relative flex flex-col items-center gap-1 p-2 transition-colors cursor-pointer ${isActive("/cart") ? "text-primary" : "text-text-muted hover:text-primary"
+                            }`}
+                    >
+                        <div className="relative">
+                            <span className={`material-symbols-outlined ${isActive("/cart") ? "filled material-symbols-filled" : ""}`}
+                            >
+                                shopping_cart
+                            </span>
+                            {/* Cart Badge */}
+                            <CartBadge />
+                        </div>
+                        <span className="text-[10px] font-medium">장바구니</span>
+                    </Link>
 
                     {/* Profile Button */}
                     <button

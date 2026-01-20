@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { getAllUsers, updateUserRole } from '@/lib/firebase/auth';
 
 interface User {
@@ -12,14 +12,14 @@ interface User {
 const AdminUsersPage = () => {
   const [users, setUsers] = useState<User[]>([]);
 
-  const fetchUsers = async () => {
+  const fetchUsers = useCallback(async () => {
     const userList = (await getAllUsers()) as User[];
     setUsers(userList);
-  };
+  }, []);
 
   useEffect(() => {
     fetchUsers();
-  }, []);
+  }, [fetchUsers]);
 
   const handleRoleChange = async (uid: string, newRole: string) => {
     await updateUserRole(uid, newRole);
@@ -42,6 +42,7 @@ const AdminUsersPage = () => {
               <td className="py-2 px-4 border-b">{user.email}</td>
               <td className="py-2 px-4 border-b">
                 <select
+                  aria-label="Change user role"
                   value={user.role}
                   onChange={(e) => handleRoleChange(user.uid, e.target.value)}
                   className="p-2 border rounded"

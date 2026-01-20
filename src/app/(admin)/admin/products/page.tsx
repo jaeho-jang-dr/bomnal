@@ -7,6 +7,8 @@ import {
   updateProduct,
   deleteProduct,
 } from '@/lib/firebase/firestore';
+import Image from 'next/image';
+import SmartRegisterModal from '@/components/admin/SmartRegisterModal';
 
 interface Product {
   id: string;
@@ -21,6 +23,7 @@ const AdminProductsPage = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [newProduct, setNewProduct] = useState({ name: '', price: '', description: '', image: '', tag: '' });
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
+  const [isSmartModalOpen, setIsSmartModalOpen] = useState(false);
 
   const fetchProducts = async () => {
     const productList = (await getProducts()) as Product[];
@@ -83,7 +86,25 @@ const AdminProductsPage = () => {
 
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">상품 관리</h1>
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-2xl font-bold">상품 관리</h1>
+        <button
+          onClick={() => setIsSmartModalOpen(true)}
+          className="bg-indigo-600 text-white px-4 py-2 rounded-lg font-bold shadow-md hover:bg-indigo-700 flex items-center gap-2"
+        >
+          <span className="material-symbols-outlined">auto_awesome</span>
+          스마트 등록 (AI)
+        </button>
+      </div>
+
+      <SmartRegisterModal
+        isOpen={isSmartModalOpen}
+        onClose={() => setIsSmartModalOpen(false)}
+        onRegister={async (data) => {
+          await addProduct(data);
+          fetchProducts();
+        }}
+      />
 
       {/* Add Product Form */}
       <form onSubmit={handleAddProduct} className="mb-8 bg-gray-50 p-4 rounded-lg">
@@ -163,7 +184,13 @@ const AdminProductsPage = () => {
                       className="p-1 border rounded w-full"
                     />
                   ) : (
-                    <img src={product.image} alt={product.name} className="w-10 h-10 object-cover rounded" />
+                    <Image
+                      src={product.image}
+                      alt={product.name}
+                      width={40}
+                      height={40}
+                      className="object-cover rounded"
+                    />
                   )}
                 </td>
                 <td className="py-2 px-4">

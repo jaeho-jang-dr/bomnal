@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import {
   signInWithGoogle,
   signInWithEmail,
@@ -52,6 +52,7 @@ export const AuthModal = ({ onClose }: AuthModalProps) => {
       <div className="bg-white rounded-lg p-8 shadow-xl max-w-sm w-full relative">
         <IconButton
           icon="close"
+          label="Close"
           onClick={onClose}
           className="absolute top-4 right-4"
         />

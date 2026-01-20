@@ -15,7 +15,7 @@ const ORDERS_COLLECTION = "orders";
 const CARTS_COLLECTION = "carts";
 
 // Get user's cart
-export const getCart = async (userId) => {
+export const getCart = async (userId: string) => {
   if (!userId) return null;
   try {
     const cartRef = doc(firestore, CARTS_COLLECTION, userId);
@@ -32,7 +32,7 @@ export const getCart = async (userId) => {
 };
 
 // Set user's cart
-export const setCart = async (userId, items) => {
+export const setCart = async (userId: string, items: any[]) => {
   try {
     const cartRef = doc(firestore, CARTS_COLLECTION, userId);
     await setDoc(cartRef, { items });
@@ -44,7 +44,7 @@ export const setCart = async (userId, items) => {
 };
 
 // Add a new product
-export const addProduct = async (productData) => {
+export const addProduct = async (productData: any) => {
   try {
     const docRef = await addDoc(
       collection(firestore, PRODUCTS_COLLECTION),
@@ -75,7 +75,7 @@ export const getProducts = async () => {
 };
 
 // Update a product
-export const updateProduct = async (productId, productData) => {
+export const updateProduct = async (productId: string, productData: any) => {
   try {
     const productRef = doc(firestore, PRODUCTS_COLLECTION, productId);
     await updateDoc(productRef, productData);
@@ -87,7 +87,7 @@ export const updateProduct = async (productId, productData) => {
 };
 
 // Delete a product
-export const deleteProduct = async (productId) => {
+export const deleteProduct = async (productId: string) => {
   try {
     const productRef = doc(firestore, PRODUCTS_COLLECTION, productId);
     await deleteDoc(productRef);
@@ -114,7 +114,7 @@ export const getOrders = async () => {
 };
 
 // Update an order's status
-export const updateOrderStatus = async (orderId, status) => {
+export const updateOrderStatus = async (orderId: string, status: string) => {
   try {
     const orderRef = doc(firestore, ORDERS_COLLECTION, orderId);
     await updateDoc(orderRef, { status });

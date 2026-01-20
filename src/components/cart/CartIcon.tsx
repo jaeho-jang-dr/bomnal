@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 import { useCartStore } from "@/store/cartStore";
 
 interface CartIconProps {
@@ -8,6 +10,11 @@ interface CartIconProps {
 
 export const CartIcon = ({ onClick }: CartIconProps) => {
   const totalItems = useCartStore((state) => state.totalItems());
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <div className="relative">
@@ -17,7 +24,7 @@ export const CartIcon = ({ onClick }: CartIconProps) => {
       >
         <span className="material-symbols-outlined">shopping_cart</span>
       </button>
-      {totalItems > 0 && (
+      {mounted && totalItems > 0 && (
         <span className="absolute -top-0.5 -right-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white">
           {totalItems}
         </span>

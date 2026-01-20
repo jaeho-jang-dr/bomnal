@@ -1,5 +1,5 @@
 
-import { addDoc, collection, getDocs, query, where, writeBatch, doc } from "firebase/firestore";
+import { collection, getDocs, writeBatch, doc } from "firebase/firestore";
 import { firestore } from "./config";
 
 const products = [

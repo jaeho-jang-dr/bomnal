@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 // This is a placeholder for the PortOne SDK.
 // You would typically import this from the PortOne library.
 const PortOne = {
-  requestPayment: async (options) => {
+  requestPayment: async (options: any) => {
     console.log('Requesting payment with options:', options);
     // In a real scenario, this would return a transaction ID from PortOne.
     return {
@@ -24,7 +24,7 @@ export async function POST(request: Request) {
     // 1. Validate the cart contents and calculate the total amount
     // (This is a simplified example)
     const amount = cart.items.reduce(
-      (total, item) => total + item.price * item.quantity,
+      (total: number, item: any) => total + item.price * item.quantity,
       0
     );
 

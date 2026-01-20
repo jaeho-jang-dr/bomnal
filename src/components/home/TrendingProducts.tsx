@@ -64,7 +64,10 @@ export const TrendingProducts = ({ products }: TrendingProductsProps) => {
                                     ${product.price.toFixed(2)}
                                 </span>
                                 <button
-                                    onClick={() => addItemToCart(product)}
+                                    onClick={() => {
+                                        addItemToCart(product);
+                                        window.alert(`${product.name}이(가) 장바구니에 담겼습니다.`);
+                                    }}
                                     className="bg-primary/10 hover:bg-primary text-primary hover:text-white size-8 rounded-full flex items-center justify-center transition-colors cursor-pointer"
                                     aria-label={`Add ${product.name} to cart`}
                                 >

@@ -14,7 +14,6 @@ import {
   getDoc,
   collection,
   getDocs,
-  updateDoc,
 } from "firebase/firestore";
 
 // Define User Data Interface
@@ -86,9 +85,9 @@ export const signInWithGoogle = async () => {
     }
 
     return { user, error: null };
-  } catch (error: any) {
+  } catch (error) {
     console.error("Error signing in with Google: ", error);
-    return { user: null, error: error.message };
+    return { user: null, error: (error as Error).message };
   }
 };
 
@@ -97,9 +96,9 @@ export const signInWithEmail = async (email: string, password: string) => {
   try {
     const result = await signInWithEmailAndPassword(auth, email, password);
     return { user: result.user, error: null };
-  } catch (error: any) {
+  } catch (error) {
     console.error("Error signing in with email: ", error);
-    return { user: null, error: error.message };
+    return { user: null, error: (error as Error).message };
   }
 };
 
@@ -114,9 +113,9 @@ export const registerWithEmail = async (email: string, password: string) => {
       role: "user",
     });
     return { user, error: null };
-  } catch (error: any) {
+  } catch (error) {
     console.error("Error registering with email: ", error);
-    return { user: null, error: error.message };
+    return { user: null, error: (error as Error).message };
   }
 };
 

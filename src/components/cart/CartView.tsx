@@ -19,14 +19,13 @@ export const CartView = ({ isOpen, onClose }: CartViewProps) => {
 
   return (
     <div
-      className={`fixed top-0 right-0 h-full w-full max-w-md bg-white dark:bg-gray-800 shadow-2xl z-50 transform transition-transform duration-300 ease-in-out ${
-        isOpen ? "translate-x-0" : "translate-x-full"
-      }`}
+      className={`fixed top-0 right-0 h-full w-full max-w-md bg-white dark:bg-gray-800 shadow-2xl z-50 transform transition-transform duration-300 ease-in-out ${isOpen ? "translate-x-0" : "translate-x-full"
+        }`}
     >
       <div className="flex flex-col h-full">
         <header className="p-4 flex items-center justify-between border-b dark:border-gray-700">
           <h2 className="text-xl font-bold">Your Cart</h2>
-          <IconButton icon="close" onClick={onClose} />
+          <IconButton icon="close" label="Close" onClick={onClose} />
         </header>
 
         <div className="flex-grow p-4 overflow-y-auto">
@@ -56,6 +55,7 @@ export const CartView = ({ isOpen, onClose }: CartViewProps) => {
                   </div>
                   <IconButton
                     icon="delete"
+                    label="Remove"
                     onClick={() => removeItem(item.id)}
                     className="text-red-500 hover:bg-red-100"
                   />
