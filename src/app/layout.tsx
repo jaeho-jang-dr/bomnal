@@ -2,6 +2,7 @@ import { AuthProvider } from "@/context/AuthContext";
 import type { Metadata } from "next";
 import { Manrope, Gloria_Hallelujah } from "next/font/google";
 import "./globals.css";
+import CartManager from "@/components/cart/CartManager";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -37,7 +38,10 @@ export default function RootLayout({
       <body
         className={`${manrope.variable} ${gloria.variable} antialiased font-display`}
       >
-        <AuthProvider>{children}</AuthProvider>
+        <AuthProvider>
+          <CartManager />
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );

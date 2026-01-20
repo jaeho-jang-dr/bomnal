@@ -43,7 +43,7 @@ export function HeroVideoBackground() {
             {/* Video 1 */}
             <video
                 ref={video1Ref}
-                src="/videos/hero-1.mp4"
+                src="/videos/hero-01.mp4"
                 className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${activeVideo === 1 ? "opacity-100 z-10" : "opacity-0 z-0"
                     }`}
                 muted
@@ -54,7 +54,7 @@ export function HeroVideoBackground() {
             {/* Video 2 */}
             <video
                 ref={video2Ref}
-                src="/videos/hero-2.mp4"
+                src="/videos/hero-02.mp4"
                 className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${activeVideo === 2 ? "opacity-100 z-10" : "opacity-0 z-0"
                     }`}
                 muted

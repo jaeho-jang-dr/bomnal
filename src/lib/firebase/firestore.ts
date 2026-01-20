@@ -5,11 +5,43 @@ import {
   updateDoc,
   deleteDoc,
   doc,
+  getDoc,
+  setDoc,
 } from "firebase/firestore";
 import { firestore } from "./config";
 
 const PRODUCTS_COLLECTION = "products";
 const ORDERS_COLLECTION = "orders";
+const CARTS_COLLECTION = "carts";
+
+// Get user's cart
+export const getCart = async (userId) => {
+  if (!userId) return null;
+  try {
+    const cartRef = doc(firestore, CARTS_COLLECTION, userId);
+    const cartSnap = await getDoc(cartRef);
+    if (cartSnap.exists()) {
+      return cartSnap.data().items;
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.error("Error getting cart:", error);
+    return null;
+  }
+};
+
+// Set user's cart
+export const setCart = async (userId, items) => {
+  try {
+    const cartRef = doc(firestore, CARTS_COLLECTION, userId);
+    await setDoc(cartRef, { items });
+    return true;
+  } catch (error) {
+    console.error("Error setting cart:", error);
+    return false;
+  }
+};
 
 // Add a new product
 export const addProduct = async (productData) => {
