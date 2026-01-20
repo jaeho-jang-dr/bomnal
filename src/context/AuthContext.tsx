@@ -1,11 +1,10 @@
 "use client";
 
 import { createContext, useContext, ReactNode } from "react";
-import { useAuth } from "../hooks/useAuth";
-import { User } from "firebase/auth";
+import { useAuth, AuthUser } from "../hooks/useAuth";
 
 interface AuthContextType {
-  user: User | null;
+  user: AuthUser | null;
   loading: boolean;
 }
 

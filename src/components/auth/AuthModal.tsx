@@ -21,29 +21,29 @@ export const AuthModal = ({ onClose }: AuthModalProps) => {
   const [error, setError] = useState<string | null>(null);
 
   const handleGoogleSignIn = async () => {
-    const user = await signInWithGoogle();
+    const { user, error } = await signInWithGoogle();
     if (user) {
       onClose();
     } else {
-      setError("Google sign-in failed. Please try again.");
+      setError(error || "Google sign-in failed. Please try again.");
     }
   };
 
   const handleEmailSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
-    const user = isRegister
+    const { user, error } = isRegister
       ? await registerWithEmail(email, password)
       : await signInWithEmail(email, password);
 
     if (user) {
       onClose();
     } else {
-      setError(
+      setError(error || (
         isRegister
           ? "Registration failed. Please try again."
           : "Sign-in failed. Please check your credentials."
-      );
+      ));
     }
   };
 

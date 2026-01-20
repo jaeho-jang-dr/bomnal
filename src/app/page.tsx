@@ -30,13 +30,7 @@ export default function Home() {
     fetchProducts();
   }, []);
 
-  const handleProfileClick = () => {
-    if (user) {
-      signOutUser();
-    } else {
-      setIsAuthModalOpen(true);
-    }
-  };
+
 
   return (
     <>
@@ -76,17 +70,17 @@ export default function Home() {
             <div className="absolute bottom-0 left-0 right-0 p-6 pb-10 flex flex-col items-start gap-4 z-40">
               <div className="inline-flex items-center rounded-full border border-white/20 bg-white/20 backdrop-blur-sm px-3 py-1">
                 <span className="text-xs font-medium text-white tracking-wide uppercase">
-                  New Collection
+                  신규 컬렉션
                 </span>
               </div>
               <h2 className="text-4xl font-extrabold text-white leading-[1.1] tracking-tight max-w-[80%]">
-                Expert Care for Your Joints
+                관절 건강을 위한 전문 케어
               </h2>
               <p className="text-lg text-gray-200 font-medium max-w-[90%]">
-                Orthopedic solutions curated by Dr. Smith for your daily comfort.
+                닥터 스미스가 제안하는 일상의 편안함을 위한 정형외과적 솔루션.
               </p>
               <button className="mt-2 flex items-center gap-2 bg-primary hover:bg-primary-dark text-white px-6 py-3.5 rounded-xl font-bold text-base shadow-lg transition-transform active:scale-95 cursor-pointer">
-                Shop Collection
+                컬렉션 보기
                 <span className="material-symbols-outlined text-[20px]">
                   arrow_forward
                 </span>
@@ -108,7 +102,7 @@ export default function Home() {
                 </span>
               </div>
               <span className="text-sm font-semibold text-text-main dark:text-white">
-                All
+                전체
               </span>
             </div>
             {/* Inactive Chips */}
@@ -121,7 +115,7 @@ export default function Home() {
                   health_and_safety
                 </span>
               </div>
-              <span className="text-sm font-medium text-text-muted">Knee</span>
+              <span className="text-sm font-medium text-text-muted">무릎</span>
             </div>
             <div className="snap-start shrink-0 flex flex-col items-center gap-2 group cursor-pointer">
               <div className="size-16 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-text-muted flex items-center justify-center group-hover:border-primary group-hover:text-primary transition-colors">
@@ -132,7 +126,7 @@ export default function Home() {
                   align_horizontal_center
                 </span>
               </div>
-              <span className="text-sm font-medium text-text-muted">Back</span>
+              <span className="text-sm font-medium text-text-muted">허리</span>
             </div>
             <div className="snap-start shrink-0 flex flex-col items-center gap-2 group cursor-pointer">
               <div className="size-16 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-text-muted flex items-center justify-center group-hover:border-primary group-hover:text-primary transition-colors">
@@ -143,7 +137,7 @@ export default function Home() {
                   front_hand
                 </span>
               </div>
-              <span className="text-sm font-medium text-text-muted">Wrist</span>
+              <span className="text-sm font-medium text-text-muted">손목</span>
             </div>
             <div className="snap-start shrink-0 flex flex-col items-center gap-2 group cursor-pointer">
               <div className="size-16 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-text-muted flex items-center justify-center group-hover:border-primary group-hover:text-primary transition-colors">
@@ -154,7 +148,7 @@ export default function Home() {
                   footprint
                 </span>
               </div>
-              <span className="text-sm font-medium text-text-muted">Foot</span>
+              <span className="text-sm font-medium text-text-muted">발</span>
             </div>
             <div className="snap-start shrink-0 flex flex-col items-center gap-2 group cursor-pointer pr-4">
               <div className="size-16 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-text-muted flex items-center justify-center group-hover:border-primary group-hover:text-primary transition-colors">
@@ -165,7 +159,7 @@ export default function Home() {
                   compress
                 </span>
               </div>
-              <span className="text-sm font-medium text-text-muted">Socks</span>
+              <span className="text-sm font-medium text-text-muted">양말</span>
             </div>
           </div>
         </section>
@@ -191,18 +185,17 @@ export default function Home() {
               </div>
             </div>
             <h3 className="text-xl font-bold text-text-main dark:text-white mb-2">
-              A Note from Dr. Smith
+              닥터 스미스의 한마디
             </h3>
             <p className="text-text-main/80 dark:text-gray-300 text-base font-medium leading-relaxed mb-4 italic">
-              "I personally verify every brace and support we sell. If I wouldn't
-              prescribe it to my own family, you won't find it here."
+              "판매하는 모든 보호대와 지지대는 제가 직접 검증합니다. 제 가족에게 처방할 수 없는 제품이라면, 이곳에서 판매하지 않습니다."
             </p>
             <div className="flex flex-col items-center gap-1">
               <span className="text-3xl text-primary signature-text opacity-90">
                 Dr. Sarah Smith
               </span>
               <p className="text-xs uppercase tracking-widest font-bold text-text-muted">
-                Director &amp; Lead Surgeon
+                대표 원장 & 수석 외과 전문의
               </p>
             </div>
           </div>
@@ -212,13 +205,13 @@ export default function Home() {
         <section className="px-4 py-4">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-2xl font-bold text-text-main dark:text-white">
-              Doctor Recommended
+              의사 추천 상품
             </h2>
             <a
               className="text-sm font-bold text-primary hover:text-primary-dark"
               href="/shop"
             >
-              See all
+              전체 보기
             </a>
           </div>
           <div className="grid grid-cols-2 gap-4">
@@ -272,8 +265,8 @@ export default function Home() {
                 local_shipping
               </span>
               <p className="text-[10px] uppercase font-bold text-text-muted tracking-wide">
-                Easy<br />
-                Returns
+                간편<br />
+                반품
               </p>
             </div>
             <div className="w-px bg-gray-100 dark:bg-gray-800 h-12 self-center"></div>
@@ -282,8 +275,8 @@ export default function Home() {
                 verified_user
               </span>
               <p className="text-[10px] uppercase font-bold text-text-muted tracking-wide">
-                Medicare<br />
-                Approved
+                의료기기<br />
+                인증
               </p>
             </div>
             <div className="w-px bg-gray-100 dark:bg-gray-800 h-12 self-center"></div>
@@ -292,54 +285,16 @@ export default function Home() {
                 medical_information
               </span>
               <p className="text-[10px] uppercase font-bold text-text-muted tracking-wide">
-                Surgeon<br />
-                Verified
+                전문의<br />
+                검증
               </p>
             </div>
           </div>
         </section>
 
-        {/* Bottom Navigation */}
-        <nav className="fixed bottom-0 left-0 w-full bg-white dark:bg-background-dark border-t border-gray-200 dark:border-gray-800 safe-bottom pt-2 px-2 z-50 shadow-[0_-5px_15px_rgba(0,0,0,0.02)]">
-          <div className="flex items-center justify-around pb-2">
-            <button className="flex flex-col items-center gap-1 p-2 text-primary cursor-pointer">
-              <span
-                className="material-symbols-outlined filled"
-                style={{ fontVariationSettings: "'FILL' 1" }}
-              >
-                home
-              </span>
-              <span className="text-[10px] font-bold">Home</span>
-            </button>
-            <a
-              href="/shop"
-              className="flex flex-col items-center gap-1 p-2 text-text-muted hover:text-primary transition-colors cursor-pointer"
-            >
-              <span className="material-symbols-outlined">grid_view</span>
-              <span className="text-[10px] font-medium">Shop</span>
-            </a>
-            <button className="flex flex-col items-center gap-1 p-2 text-text-muted hover:text-primary transition-colors cursor-pointer">
-              <span className="material-symbols-outlined">menu_book</span>
-              <span className="text-[10px] font-medium">Advice</span>
-            </button>
-            <button
-              onClick={handleProfileClick}
-              className="flex flex-col items-center gap-1 p-2 text-text-muted hover:text-primary transition-colors cursor-pointer"
-              disabled={loading}
-            >
-              <span className="material-symbols-outlined">
-                {user ? "logout" : "person"}
-              </span>
-              <span className="text-[10px] font-medium">
-                {loading ? "..." : user ? "Logout" : "Profile"}
-              </span>
-            </button>
-          </div>
-        </nav>
         {/* Safe area spacing for phones with home indicators */}
         <div className="h-6"></div>
       </div>
     </>
   );
 }
-

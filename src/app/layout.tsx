@@ -1,21 +1,8 @@
 import { AuthProvider } from "@/context/AuthContext";
 import type { Metadata } from "next";
-import { Manrope, Gloria_Hallelujah } from "next/font/google";
 import "./globals.css";
 import CartManager from "@/components/cart/CartManager";
-
-const manrope = Manrope({
-  subsets: ["latin"],
-  variable: "--font-manrope",
-  display: "swap",
-});
-
-const gloria = Gloria_Hallelujah({
-  weight: "400",
-  subsets: ["latin"],
-  variable: "--font-gloria",
-  display: "swap",
-});
+import GlobalUI from "@/components/layout/GlobalUI";
 
 export const metadata: Metadata = {
   title: "Senior Shop",
@@ -35,10 +22,9 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body
-        className={`${manrope.variable} ${gloria.variable} antialiased font-display`}
-      >
+      <body className={`antialiased font-display font-sans`}>
         <AuthProvider>
+          <GlobalUI />
           <CartManager />
           {children}
         </AuthProvider>
