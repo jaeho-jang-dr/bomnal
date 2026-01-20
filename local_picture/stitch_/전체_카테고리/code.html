@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+
+<html class="light" lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#6c4f37",
+                        "background-light": "#fcf7f2",
+                        "background-dark": "#1c1916",
+                        "card-light": "#FCF5ED",
+                        "accent-sage": "#6F8B70",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>.material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24
+    }
+.active-icon {
+    font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24
+    }
+/* Custom subtle grain effect for paper feel */
+.paper-texture {
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuBRlsuAHMMfvF-4pcOGba8IGs7-QBtnDe_0ce549Q7ulzC4ezY2h-gHa85-3R4yjM_XcLNDAqLTehpgHjj0zHG8GgMTE9TqaN2qQvr9caKh3laQwKHJmyZApBfbVPINQjHbmwa8AvOirkMjq9-5UAbsHSQ2N9r2FBc1lftqndJg_gMYVkKbj3Im2YPjtVVzw32Wuj8AsXnZk47uYIK3zp7QVqLD8UvGqdHEcragcRiVHIj-EYA2V1pH9o2qgf2-hraNWPBaHGt8Yhc)
+    }</style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-primary selection:bg-primary/10">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-primary/10">
+<div class="flex items-center px-4 py-4 md:py-6 max-w-lg mx-auto">
+<button class="flex items-center justify-center size-12 rounded-full hover:bg-primary/5 transition-colors">
+<span class="material-symbols-outlined text-3xl text-primary dark:text-white">arrow_back</span>
+</button>
+<h1 class="text-2xl font-extrabold tracking-tight text-primary dark:text-white ml-2">전체 카테고리</h1>
+</div>
+</header>
+<main class="max-w-lg mx-auto pb-32 paper-texture">
+<!-- Hero Section / Search Prompt -->
+<div class="px-6 pt-6 pb-2">
+<p class="text-primary/60 dark:text-white/60 text-lg font-medium">필요하신 물건을 선택해주세요.</p>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-2 gap-4 p-4">
+<!-- Category: Nutrition -->
+<div class="col-span-1 group cursor-pointer">
+<div class="relative overflow-hidden aspect-[4/5] rounded-xl bg-card-light dark:bg-zinc-800 shadow-sm transition-all hover:shadow-md hover:-translate-y-1">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Close up of herbal medicine bottles and vitamins" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCEgeQR-oitLYRAgNrmWf-6sfYsqgLf2L7GrRTS6Ywh3IFFi-ZmVMUafAm7bjkmbiZ8Ir2ep_weDuZc0feCXUN3wExeVwbWePq6Jo6cgWR6MqkO18gODEexwLHoWJmsxHwVPvEuQRc-AbmJSaTTRFOQDFztv6K3CEBN1nG9n0JxYsjOPrMYcrMRrnnTJQ9djW6noLA4H_5HlDFh3ouUMRgXntIn_rRJwdLXTtlA7M-Ak2k6WzmRJw0m698XErwoE90BQ-MfHca5NNU');"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<div class="absolute bottom-4 left-4 right-4">
+<span class="inline-block px-2 py-1 mb-2 bg-accent-sage text-white text-[10px] font-bold rounded-full uppercase tracking-widest">인기</span>
+<p class="text-white text-xl font-bold leading-tight">영양제</p>
+</div>
+</div>
+</div>
+<!-- Category: Mobility Aids -->
+<div class="col-span-1 group cursor-pointer">
+<div class="relative overflow-hidden aspect-[4/5] rounded-xl bg-card-light dark:bg-zinc-800 shadow-sm transition-all hover:shadow-md hover:-translate-y-1">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Minimalist wooden walking stick against a soft wall" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCTLuoZx8aCTX3cEmOC-d726LsA1bvlKWaa8iuYqOxREbS6nbR9okkkU6PM2GJfN0OiSjUh4WXdOtyQtAHIh_6sPZojft09FGM7XS25F8pBXePoGN8ggqNsBXRYOkZ4xlTzkisDPyEosTwhrax7gQadVDysRNbkILd1OxTxQT7ZXhboc7XKQONKpO6eYGFuK_0llJsaUSUNWbQB20vbD7uUaAwHdOCeW1lbe_ryUVlL43e__17pd3Sg6KR9CZdBnegLpN-IEllZlUQ');"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<div class="absolute bottom-4 left-4 right-4">
+<p class="text-white text-xl font-bold leading-tight">생활보조기구</p>
+</div>
+</div>
+</div>
+<!-- Category: Clothing (Wide) -->
+<div class="col-span-2 group cursor-pointer">
+<div class="relative overflow-hidden h-40 rounded-xl bg-card-light dark:bg-zinc-800 shadow-sm transition-all hover:shadow-md hover:-translate-y-1">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Neatly folded linen clothes in warm earthy tones" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAHAzK9bueAkTuBVRRMjcR0IiYI50E0_2wQG0QAg5wBfxkczS4QqNcvpRYM3URqxmMGwCtj6nOQMMEpznEqABE1EXqTQtVdYf4JDExl8wSTm0NFqHZYXRNqg9WbYh0Avq0rzsbAAxMEdBRWlwRCIGjYRXGwodI8glR-Icj-HtpqKP0gKLLjCCVSqh6QX6e_PrMGJR9MELHCTpNmLtwm4mwMcCEC9BRHWkPtcl8T2svLedjciDuYrOa-Kpq6pLR9cgqZQ-CvpFUWKZA');"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent"></div>
+<div class="absolute inset-y-0 left-6 flex flex-col justify-center">
+<p class="text-white text-2xl font-bold">편안한 의류</p>
+<p class="text-white/80 text-sm mt-1">천연 소재의 부드러움</p>
+</div>
+</div>
+</div>
+<!-- Category: Hobbies -->
+<div class="col-span-1 group cursor-pointer">
+<div class="relative overflow-hidden aspect-square rounded-xl bg-card-light dark:bg-zinc-800 shadow-sm transition-all hover:shadow-md hover:-translate-y-1">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Traditional calligraphy brushes and ink set" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD-lxKN3NnKQaRQcP5ncaJ1ZQslLkR1fu_5O9EqzD3pVxGO764kQhMKvdrkZpvw0e8JLqeNgzM8hRJD-ivXB328Mhniz6omTIL4r_7nUoQsTEB6Ci0W8O5GRok_mzyDQV8o2SoWAH9RMBmsKyBeC3k0mCo69IRFlFs7L5ADmAgwwTZSdRk0FnE91zCmHUFdVCGRtPQdiI0kAGMKH58266aNw0wckDm08IS22wFpKGZcj4aUg_6-klcuv5kck64SGhMq8GfzYjd_crs');"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent"></div>
+<div class="absolute bottom-4 left-4 right-4">
+<p class="text-white text-xl font-bold leading-tight">취미 용품</p>
+</div>
+</div>
+</div>
+<!-- Category: Daily Supplies -->
+<div class="col-span-1 group cursor-pointer">
+<div class="relative overflow-hidden aspect-square rounded-xl bg-card-light dark:bg-zinc-800 shadow-sm transition-all hover:shadow-md hover:-translate-y-1">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Artisanal handmade soaps and towels" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDouO_Aw__Js_53hxnTbGRCehIMq88MxltnzoifVIjzfT_XTgPewZJDmWUz2s82FdGX4vRaNtM6PKBXwtwHC5_DA588PsljVJuDYFbenzKCtbM76Hx1rlDeKvtt_KWTZ8BxJrxOwSyADDn-yWhxfkaXH9u4vJl0QVHnrPNxwIzPaO77ikesMQ64ASdQ4HenQGuz9aRB241fev-jhzFT6H4I7X-4X2FRXY8IuFcahmGM_BzedP4FOUK377XriCha53TeyVCxZBhL7SY');"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent"></div>
+<div class="absolute bottom-4 left-4 right-4">
+<p class="text-white text-xl font-bold leading-tight">생활용품</p>
+</div>
+</div>
+</div>
+<!-- Category: Special Offers (High Contrast) -->
+<div class="col-span-2 group cursor-pointer mt-2">
+<div class="relative overflow-hidden h-32 rounded-xl bg-[#C4B08F] dark:bg-primary shadow-lg ring-4 ring-[#C4B08F]/20">
+<div class="absolute right-[-10%] top-[-20%] opacity-20">
+<span class="material-symbols-outlined text-[120px]">loyalty</span>
+</div>
+<div class="absolute inset-y-0 left-6 flex flex-col justify-center">
+<p class="text-primary dark:text-white text-sm font-bold uppercase tracking-widest mb-1">Seasonal Sale</p>
+<p class="text-primary dark:text-white text-2xl font-extrabold">특별 혜택</p>
+<p class="text-primary/70 dark:text-white/70 text-sm font-medium">회원님을 위한 맞춤형 할인</p>
+</div>
+<div class="absolute right-6 inset-y-0 flex items-center">
+<div class="size-10 rounded-full bg-white flex items-center justify-center text-primary shadow-sm">
+<span class="material-symbols-outlined">chevron_right</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 right-0 z-50 bg-white dark:bg-background-dark border-t border-primary/10 px-4 pb-8 pt-3 shadow-[0_-4px_20px_rgba(0,0,0,0.05)]">
+<div class="max-w-lg mx-auto flex justify-around items-center">
+<a class="flex flex-col items-center gap-1 group" href="#">
+<span class="material-symbols-outlined text-2xl text-primary/40 group-hover:text-primary transition-colors">home</span>
+<span class="text-[10px] font-bold text-primary/40 group-hover:text-primary">홈</span>
+</a>
+<a class="flex flex-col items-center gap-1 group relative" href="#">
+<div class="bg-primary/10 rounded-full px-4 py-1 flex flex-col items-center">
+<span class="material-symbols-outlined text-2xl text-primary active-icon">grid_view</span>
+</div>
+<span class="text-[10px] font-bold text-primary">카테고리</span>
+</a>
+<a class="flex flex-col items-center gap-1 group" href="#">
+<span class="material-symbols-outlined text-2xl text-primary/40 group-hover:text-primary transition-colors">search</span>
+<span class="text-[10px] font-bold text-primary/40 group-hover:text-primary">검색</span>
+</a>
+<a class="flex flex-col items-center gap-1 group" href="#">
+<span class="material-symbols-outlined text-2xl text-primary/40 group-hover:text-primary transition-colors">person</span>
+<span class="text-[10px] font-bold text-primary/40 group-hover:text-primary">내 정보</span>
+</a>
+</div>
+</nav>
+</body></html>

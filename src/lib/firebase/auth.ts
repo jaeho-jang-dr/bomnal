@@ -21,7 +21,7 @@ export interface UserData {
   uid: string;
   email?: string;
   role?: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 // Get user document from Firestore
@@ -85,9 +85,9 @@ export const signInWithGoogle = async () => {
     }
 
     return { user, error: null };
-  } catch (error) {
+  } catch (error: any) {
     console.error("Error signing in with Google: ", error);
-    return { user: null, error: (error as Error).message };
+    return { user: null, error: error.message || 'An error occurred' };
   }
 };
 
@@ -96,9 +96,9 @@ export const signInWithEmail = async (email: string, password: string) => {
   try {
     const result = await signInWithEmailAndPassword(auth, email, password);
     return { user: result.user, error: null };
-  } catch (error) {
+  } catch (error: any) {
     console.error("Error signing in with email: ", error);
-    return { user: null, error: (error as Error).message };
+    return { user: null, error: error.message || 'An error occurred' };
   }
 };
 
@@ -113,9 +113,9 @@ export const registerWithEmail = async (email: string, password: string) => {
       role: "user",
     });
     return { user, error: null };
-  } catch (error) {
+  } catch (error: any) {
     console.error("Error registering with email: ", error);
-    return { user: null, error: (error as Error).message };
+    return { user: null, error: error.message || 'An error occurred' };
   }
 };
 

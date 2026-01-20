@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+
+<html class="light" lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Noto+Sans+KR:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#6c4f37",
+                        "accent-sage": "#6F8B70",
+                        "accent-gold": "#C4B08F",
+                        "background-light": "#fcf7f2",
+                        "background-dark": "#1c1916",
+                        "card-light": "#FCF5ED",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .fill-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+        body {
+            font-family: 'Plus Jakarta Sans', 'Noto Sans KR', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-[#161413] dark:text-white min-h-screen pb-32">
+<!-- Top Navigation Bar -->
+<nav class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-primary/10">
+<div class="flex items-center p-4 justify-between max-w-md mx-auto">
+<button class="flex size-12 items-center justify-center rounded-full hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-primary dark:text-accent-gold text-3xl">arrow_back</span>
+</button>
+<h2 class="text-xl font-bold tracking-tight text-primary dark:text-white">상품 상세</h2>
+<div class="flex gap-2">
+<button class="flex size-12 items-center justify-center rounded-full hover:bg-primary/10">
+<span class="material-symbols-outlined text-primary dark:text-accent-gold text-2xl">share</span>
+</button>
+<button class="flex size-12 items-center justify-center rounded-full hover:bg-primary/10">
+<span class="material-symbols-outlined text-primary dark:text-accent-gold text-2xl">favorite</span>
+</button>
+</div>
+</div>
+</nav>
+<main class="max-w-md mx-auto">
+<!-- Hero Image Gallery -->
+<div class="px-4 py-2">
+<div class="relative aspect-square w-full rounded-xl overflow-hidden shadow-xl shadow-primary/5 bg-white">
+<div class="w-full h-full bg-cover bg-center" data-alt="Modern wooden orthopedic chair in a sunlit warm room" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAcqQiEkGPtZKBHNdnaz_fvrTU7UGxLIzxtMF8sDWloklBKZnu-lvutg5eaFlYu_lcs_XCZaKozlBhGIgYROpYxirz-fVmbzHyFWYGpeAI7khzxDwrjTzTptIq_zVqdVSBjkOY57XJihQV7H7YkskYMVI79BRTCIGwH1NBqIc5Zgt5BzvmTAsVan74M-0qPHBF2F2gARN5LvDZ0Ip1pJDKu7OmRo1AiOHxD7CyVnC0mvBz2BYHIShOmquxCq2ChyNnKI3UefpzYDNo");'>
+</div>
+<!-- Image Indicators -->
+<div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 bg-black/20 px-3 py-1.5 rounded-full backdrop-blur-sm">
+<div class="size-2 rounded-full bg-white"></div>
+<div class="size-2 rounded-full bg-white/40"></div>
+<div class="size-2 rounded-full bg-white/40"></div>
+</div>
+<!-- Badge -->
+<div class="absolute top-4 left-4 bg-accent-gold text-white text-sm font-bold px-3 py-1 rounded-full shadow-lg">
+                    추천 상품
+                </div>
+</div>
+</div>
+<!-- Product Header -->
+<div class="px-5 pt-6 pb-4">
+<div class="flex items-center gap-2 mb-2">
+<span class="text-accent-sage font-bold text-sm tracking-widest uppercase">Premium Wood Series</span>
+</div>
+<h1 class="text-3xl font-black leading-tight text-primary dark:text-white mb-2">
+                편안한 원목 정형외과용<br/>라운지 체어
+            </h1>
+<div class="flex items-baseline gap-2">
+<span class="text-4xl font-black text-primary dark:text-accent-gold">289,000원</span>
+<span class="text-lg text-[#7e746d] line-through">350,000원</span>
+</div>
+</div>
+<!-- Rating Summary Card -->
+<div class="px-4 mb-6">
+<div class="bg-card-light dark:bg-white/5 p-5 rounded-xl border border-primary/5 shadow-sm">
+<div class="flex items-center justify-between mb-4">
+<div class="flex flex-col">
+<div class="flex items-center gap-1 mb-1">
+<span class="text-3xl font-black text-primary dark:text-white">4.9</span>
+<div class="flex text-accent-gold">
+<span class="material-symbols-outlined fill-icon text-xl">star</span>
+<span class="material-symbols-outlined fill-icon text-xl">star</span>
+<span class="material-symbols-outlined fill-icon text-xl">star</span>
+<span class="material-symbols-outlined fill-icon text-xl">star</span>
+<span class="material-symbols-outlined fill-icon text-xl">star</span>
+</div>
+</div>
+<p class="text-sm text-primary/60 font-medium">1,240명의 구매 고객 평가</p>
+</div>
+<button class="text-primary font-bold text-sm flex items-center gap-1 py-2 px-3 bg-white dark:bg-white/10 rounded-lg shadow-sm">
+                        전체 리뷰 <span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+<!-- Progress Bars for Ratings -->
+<div class="space-y-2">
+<div class="flex items-center gap-3">
+<span class="text-xs font-bold w-4">5</span>
+<div class="flex-1 h-2.5 bg-primary/10 rounded-full overflow-hidden">
+<div class="h-full bg-accent-sage rounded-full" style="width: 92%"></div>
+</div>
+<span class="text-xs font-medium w-8 text-right">92%</span>
+</div>
+<div class="flex items-center gap-3 opacity-60">
+<span class="text-xs font-bold w-4">4</span>
+<div class="flex-1 h-2.5 bg-primary/10 rounded-full overflow-hidden">
+<div class="h-full bg-accent-sage rounded-full" style="width: 7%"></div>
+</div>
+<span class="text-xs font-medium w-8 text-right">7%</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Bento Grid Benefits -->
+<div class="px-4 grid grid-cols-2 gap-4 mb-8">
+<div class="bg-white dark:bg-white/5 p-4 rounded-xl border border-primary/5 shadow-sm flex flex-col gap-3">
+<div class="size-10 rounded-full bg-accent-sage/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-accent-sage">local_shipping</span>
+</div>
+<div>
+<p class="font-bold text-primary dark:text-white text-lg">무료 배송</p>
+<p class="text-sm text-primary/60">내일 바로 도착 예정</p>
+</div>
+</div>
+<div class="bg-white dark:bg-white/5 p-4 rounded-xl border border-primary/5 shadow-sm flex flex-col gap-3">
+<div class="size-10 rounded-full bg-accent-gold/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-accent-gold">verified</span>
+</div>
+<div>
+<p class="font-bold text-primary dark:text-white text-lg">품질 보증</p>
+<p class="text-sm text-primary/60">5년 무상 수리 보장</p>
+</div>
+</div>
+</div>
+<!-- Detailed Description -->
+<div class="px-5 space-y-6">
+<section>
+<h3 class="text-xl font-bold text-primary dark:text-white mb-4 flex items-center gap-2">
+<span class="w-1 h-6 bg-accent-sage rounded-full"></span>
+                    부모님을 위한 편안함
+                </h3>
+<p class="text-lg leading-relaxed text-primary/80 dark:text-white/80">
+                    인체공학적 설계를 통해 허리의 부담을 최소화하였습니다. 최고급 북미산 월넛 원목을 사용하여 시간이 지날수록 멋스러움이 더해집니다. 넓은 팔걸이는 차 한 잔의 여유를 즐기기에 충분합니다.
+                </p>
+</section>
+<!-- Specification List -->
+<section class="bg-primary/5 dark:bg-white/5 rounded-xl p-5 space-y-4">
+<div class="flex justify-between items-center pb-3 border-b border-primary/10">
+<span class="font-bold text-primary/60">소재</span>
+<span class="font-bold text-primary dark:text-white">천연 월넛 원목, 이태리 가죽</span>
+</div>
+<div class="flex justify-between items-center pb-3 border-b border-primary/10">
+<span class="font-bold text-primary/60">크기</span>
+<span class="font-bold text-primary dark:text-white">750 x 820 x 1050 (mm)</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-bold text-primary/60">제조국</span>
+<span class="font-bold text-primary dark:text-white">대한민국</span>
+</div>
+</section>
+</div>
+<!-- Quantity Selector (Large for Accessibility) -->
+<div class="px-5 mt-10">
+<div class="flex items-center justify-between bg-white dark:bg-white/10 p-3 rounded-xl border border-primary/10">
+<span class="font-bold text-lg px-2">구매 수량</span>
+<div class="flex items-center gap-6">
+<button class="size-12 rounded-full border-2 border-primary/20 flex items-center justify-center hover:bg-primary/5">
+<span class="material-symbols-outlined text-primary dark:text-white">remove</span>
+</button>
+<span class="text-2xl font-black w-8 text-center">1</span>
+<button class="size-12 rounded-full border-2 border-primary/20 flex items-center justify-center hover:bg-primary/5">
+<span class="material-symbols-outlined text-primary dark:text-white">add</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Action Bar -->
+<div class="fixed bottom-0 left-0 right-0 bg-white/90 dark:bg-background-dark/90 backdrop-blur-xl border-t border-primary/10 pb-8 pt-4 px-4 z-50">
+<div class="max-w-md mx-auto flex gap-3">
+<button class="flex-1 h-16 rounded-xl border-2 border-primary text-primary dark:text-white font-black text-xl flex items-center justify-center gap-2 hover:bg-primary/5 transition-all active:scale-95">
+<span class="material-symbols-outlined">shopping_cart</span>
+                장바구니
+            </button>
+<button class="flex-[2] h-16 rounded-xl bg-primary text-white font-black text-xl flex items-center justify-center shadow-lg shadow-primary/25 hover:bg-primary/90 transition-all active:scale-95">
+                바로 구매하기
+            </button>
+</div>
+</div>
+</body></html>

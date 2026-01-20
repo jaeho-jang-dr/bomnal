@@ -29,7 +29,7 @@ export const DirectorTrust = () => {
                     닥터 스미스의 한마디
                 </h3>
                 <p className="text-text-main/80 dark:text-gray-300 text-base font-medium leading-relaxed mb-4 italic">
-                    "판매하는 모든 보호대와 지지대는 제가 직접 검증합니다. 제 가족에게 처방할 수 없는 제품이라면, 이곳에서 판매하지 않습니다."
+                    &quot;판매하는 모든 보호대와 지지대는 제가 직접 검증합니다. 제 가족에게 처방할 수 없는 제품이라면, 이곳에서 판매하지 않습니다.&quot;
                 </p>
                 <div className="flex flex-col items-center gap-1">
                     <span className="text-3xl text-primary signature-text opacity-90">

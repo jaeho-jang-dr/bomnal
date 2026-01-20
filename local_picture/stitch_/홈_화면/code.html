@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+
+<html class="light" lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#6c4f37",
+              "background-light": "#fdf8f3",
+              "background-dark": "#1c1916",
+              "warm-cream": "#fcf5ed",
+              "oak-border": "#e3e0de",
+              "sage-green": "#6f8b70",
+            },
+            fontFamily: {
+              "display": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        /* Subtle wood grain texture simulation */
+        .wood-texture {
+            background-image: radial-gradient(#6c4f3711 0.5px, transparent 0.5px), radial-gradient(#6c4f3711 0.5px, #fdf8f3 0.5px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+        }
+        .dark .wood-texture {
+            background-image: radial-gradient(#ffffff0a 0.5px, transparent 0.5px), radial-gradient(#ffffff0a 0.5px, #1c1916 0.5px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#161413] dark:text-[#f7f7f6] wood-texture min-h-screen">
+<!-- Top App Bar -->
+<div class="sticky top-0 z-50 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm border-b border-oak-border dark:border-white/10">
+<div class="flex flex-col gap-1 p-4">
+<div class="flex items-center h-12 justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-3xl">coffee</span>
+<p class="text-primary tracking-tight text-2xl font-extrabold leading-tight">온기상점</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex size-12 items-center justify-center rounded-full bg-warm-cream dark:bg-white/5 border border-oak-border dark:border-white/10">
+<span class="material-symbols-outlined text-primary dark:text-white" style="font-size: 28px;">search</span>
+</button>
+<button class="flex size-12 items-center justify-center rounded-full bg-warm-cream dark:bg-white/5 border border-oak-border dark:border-white/10">
+<span class="material-symbols-outlined text-primary dark:text-white" style="font-size: 28px;">shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Navigation Tabs - Thick & Large for Seniors -->
+<div class="px-4 pb-2">
+<div class="flex gap-2 bg-warm-cream dark:bg-white/5 p-1.5 rounded-xl border border-oak-border dark:border-white/10">
+<a class="flex flex-1 items-center justify-center bg-primary text-white py-4 rounded-lg shadow-sm" href="#">
+<p class="text-lg font-bold tracking-wider">홈</p>
+</a>
+<a class="flex flex-1 items-center justify-center text-primary/70 dark:text-white/70 py-4 rounded-lg" href="#">
+<p class="text-lg font-bold tracking-wider">베스트</p>
+</a>
+<a class="flex flex-1 items-center justify-center text-primary/70 dark:text-white/70 py-4 rounded-lg" href="#">
+<p class="text-lg font-bold tracking-wider">카테고리</p>
+</a>
+</div>
+</div>
+</div>
+<!-- Main Content Area -->
+<main class="pb-24">
+<!-- Hero Banner Section -->
+<div class="p-4 pt-6">
+<div class="relative h-96 w-full rounded-xl overflow-hidden shadow-xl border-4 border-white dark:border-white/10">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Senior couple enjoying tea in a cozy living room" style='background-image: linear-gradient(180deg, rgba(108, 79, 55, 0.1) 0%, rgba(108, 79, 55, 0.8) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuAQLFLybW9RiiCYFBJ2G73RGYNeT8RIWCkH5KMEABz1WEF88iOMm3OGs9sTgwpJr_JdxhMlucy575rQFW1pFlJdEYad71a_n26nWdrV2qRoOKpaU14THXJlkLXHoB2bLtJpPNzFZ_nMWUkRzVqqNw3c94z_VpgGUKpLhpNZyCUopmA0D-WqLhq53Ovj27iXNsWO0WFZ0sxyvc7VX2RJwf9hL8PmymQepN14tZPtbJ3hB5Rz8FrmYDyFYbQUwxvagiAQ0OibhdoKTUA");'></div>
+<div class="absolute bottom-0 left-0 p-6 flex flex-col gap-2">
+<span class="bg-primary/90 text-white text-sm font-bold px-3 py-1 rounded-full self-start">계절 추천</span>
+<h1 class="text-white text-3xl font-bold leading-snug">따뜻한 차 한 잔처럼<br/>포근한 일상을 선물하세요</h1>
+<p class="text-white/80 text-lg">시니어 필수품 기획전 최대 40%</p>
+</div>
+</div>
+</div>
+<!-- Category Grid Section -->
+<div class="px-4 py-4">
+<h2 class="text-primary dark:text-white text-2xl font-extrabold leading-tight tracking-tight mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined">grid_view</span>
+                자주 찾는 메뉴
+            </h2>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+<div class="flex items-center gap-4 rounded-xl border-2 border-oak-border dark:border-white/10 bg-warm-cream dark:bg-white/5 p-5 shadow-sm active:scale-95 transition-transform">
+<div class="flex items-center justify-center size-16 rounded-full bg-primary/10 text-primary shrink-0">
+<span class="material-symbols-outlined" style="font-size: 36px; font-variation-settings: 'wght' 600;">favorite</span>
+</div>
+<div class="flex flex-col">
+<h3 class="text-primary dark:text-white text-xl font-extrabold">건강 관리</h3>
+<p class="text-primary/60 dark:text-white/50 text-base">영양제 및 보조기구</p>
+</div>
+</div>
+<div class="flex items-center gap-4 rounded-xl border-2 border-oak-border dark:border-white/10 bg-warm-cream dark:bg-white/5 p-5 shadow-sm active:scale-95 transition-transform">
+<div class="flex items-center justify-center size-16 rounded-full bg-primary/10 text-primary shrink-0">
+<span class="material-symbols-outlined" style="font-size: 36px; font-variation-settings: 'wght' 600;">home_iot_device</span>
+</div>
+<div class="flex flex-col">
+<h3 class="text-primary dark:text-white text-xl font-extrabold">생활 편의</h3>
+<p class="text-primary/60 dark:text-white/50 text-base">주방 및 청소 용품</p>
+</div>
+</div>
+<div class="flex items-center gap-4 rounded-xl border-2 border-oak-border dark:border-white/10 bg-warm-cream dark:bg-white/5 p-5 shadow-sm active:scale-95 transition-transform">
+<div class="flex items-center justify-center size-16 rounded-full bg-primary/10 text-primary shrink-0">
+<span class="material-symbols-outlined" style="font-size: 36px; font-variation-settings: 'wght' 600;">featured_seasonal_and_gifts</span>
+</div>
+<div class="flex flex-col">
+<h3 class="text-primary dark:text-white text-xl font-extrabold">효도 선물</h3>
+<p class="text-primary/60 dark:text-white/50 text-base">마음을 전하는 선물셋트</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Recommended Products -->
+<div class="px-4 py-6">
+<div class="flex items-center justify-between mb-5">
+<h2 class="text-primary dark:text-white text-2xl font-extrabold leading-tight tracking-tight">오늘의 추천 상품</h2>
+<button class="text-primary/70 dark:text-white/70 font-bold flex items-center gap-1">
+                    전체보기 <span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+<div class="flex flex-col gap-6">
+<!-- Large Product Card 1 -->
+<div class="bg-white dark:bg-white/10 rounded-xl overflow-hidden border border-oak-border dark:border-white/10 shadow-lg">
+<div class="aspect-[4/3] bg-cover bg-center relative" data-alt="High-quality ergonomic walking cane with oak handle" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD44-M98c9VGOFXUozCknvca2txhWaOOYrln1SGzpPIQgR23YaobSH9WHgNndZ4SwMRauruTziXR-1rTKbl0xlc0h_4uT2nBnoCi3-S4xsCwLYBV-gWUZv6VkNZtKVy5aF2MPGtfPIV4kycO9DQ6CN3Yn98ZOgif8t6JR7TBag7yz8Aju4hgB_PP9NvP6oxISj4UcRmYGzAO1tMmOZQApVRrq-3XcmFbtrtXHgtr5HK_wkbV5RZcdZY1hhDKJCeWrxnynIV25H6Vlc");'>
+<div class="absolute top-4 left-4 bg-sage-green text-white px-3 py-1 rounded-lg font-bold">무료배송</div>
+</div>
+<div class="p-6">
+<p class="text-primary/60 dark:text-white/60 text-base mb-1 font-semibold">프리미엄 리빙</p>
+<h3 class="text-primary dark:text-white text-2xl font-bold mb-3">인체공학 설계 프리미엄 오크 지팡이</h3>
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-primary/40 dark:text-white/40 line-through text-lg font-bold">89,000원</span>
+<span class="text-primary dark:text-white text-3xl font-extrabold">54,000원 <span class="text-red-500">39%</span></span>
+</div>
+<button class="bg-primary text-white h-16 w-16 rounded-full flex items-center justify-center shadow-lg active:scale-90 transition-transform">
+<span class="material-symbols-outlined" style="font-size: 32px;">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Large Product Card 2 -->
+<div class="bg-white dark:bg-white/10 rounded-xl overflow-hidden border border-oak-border dark:border-white/10 shadow-lg">
+<div class="aspect-[4/3] bg-cover bg-center relative" data-alt="Memory foam lumbar support pillow for armchairs" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDcr5KGvwYpuJAM7KE5eSt6zhRUh6EynnHAbfxtC-Nvq1MWDS0lzMbAJAwHqIqYQnnGvHszAe6NIJ4sBe-mFimb1xxit7bkYTKYke4Kcp8G5Q2tHalxK70jU0bzL3-V5YwOw6J27O1C663EJixjCTGH_JJLosaErf3nVASqDoT0Iq2jQBz3CUqK_ZDSGsxfC_5jY6j7R_4t3ivvqOKiXtqiWmstFg3wwLZBEgwV3FMAzSPKpkUyVldN6vcfwrp6YIy5JrcfWgX20js");'>
+</div>
+<div class="p-6">
+<p class="text-primary/60 dark:text-white/60 text-base mb-1 font-semibold">편안한 휴식</p>
+<h3 class="text-primary dark:text-white text-2xl font-bold mb-3">고밀도 메모리폼 허리 지지 쿠션</h3>
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-primary dark:text-white text-3xl font-extrabold">32,800원</span>
+</div>
+<button class="bg-primary text-white h-16 w-16 rounded-full flex items-center justify-center shadow-lg active:scale-90 transition-transform">
+<span class="material-symbols-outlined" style="font-size: 32px;">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 right-0 bg-white/95 dark:bg-background-dark/95 backdrop-blur-md border-t border-oak-border dark:border-white/10 px-6 py-4 flex justify-between items-center z-50">
+<div class="flex flex-col items-center gap-1">
+<div class="bg-primary px-5 py-2 rounded-full text-white flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+</div>
+<span class="text-primary dark:text-white text-xs font-bold">홈</span>
+</div>
+<div class="flex flex-col items-center gap-1 opacity-50">
+<div class="px-5 py-2 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary dark:text-white">favorite</span>
+</div>
+<span class="text-primary dark:text-white text-xs font-bold">찜</span>
+</div>
+<div class="flex flex-col items-center gap-1 opacity-50">
+<div class="px-5 py-2 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary dark:text-white">history</span>
+</div>
+<span class="text-primary dark:text-white text-xs font-bold">최근 본</span>
+</div>
+<div class="flex flex-col items-center gap-1 opacity-50">
+<div class="px-5 py-2 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary dark:text-white">person</span>
+</div>
+<span class="text-primary dark:text-white text-xs font-bold">내 정보</span>
+</div>
+</nav>
+</body></html>

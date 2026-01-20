@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+
+<html class="light" lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#6c4f37",
+              "background-light": "#fcf7f2",
+              "background-dark": "#1c1916",
+              "cream": "#FCF5ED",
+              "sage": "#6F8B70",
+              "gold": "#C4B08F"
+            },
+            fontFamily: {
+              "display": ["Plus Jakarta Sans", "Noto Sans KR", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Plus Jakarta Sans', 'Noto Sans KR', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            font-size: 28px;
+        }
+        .active-tab {
+            background-color: #6c4f37;
+            color: white !important;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-[#161413] min-h-screen">
+<!-- Top Navigation Bar -->
+<nav class="sticky top-0 z-50 bg-background-light/80 backdrop-blur-md dark:bg-background-dark/80 border-b border-primary/10">
+<div class="flex items-center justify-between px-6 py-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">menu</span>
+</div>
+<h1 class="text-2xl font-extrabold tracking-tight text-primary">시니어 카페 마켓</h1>
+<div class="relative">
+<span class="material-symbols-outlined text-primary">shopping_basket</span>
+<span class="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">2</span>
+</div>
+</div>
+<!-- Extra-Large Category Menu -->
+<div class="flex gap-8 px-6 pb-4 overflow-x-auto no-scrollbar whitespace-nowrap">
+<button class="text-xl font-bold text-primary border-b-4 border-primary pb-1">전체</button>
+<button class="text-xl font-bold text-[#7e746d] dark:text-[#a3978d]">식료품</button>
+<button class="text-xl font-bold text-[#7e746d] dark:text-[#a3978d]">생활용품</button>
+<button class="text-xl font-bold text-[#7e746d] dark:text-[#a3978d]">건강</button>
+<button class="text-xl font-bold text-[#7e746d] dark:text-[#a3978d]">의류</button>
+</div>
+</nav>
+<main class="pb-32">
+<!-- Hero Section -->
+<div class="px-4 py-4 @container">
+<div class="relative h-[420px] w-full overflow-hidden rounded-xl bg-cover bg-center shadow-lg" data-alt="Elderly couple drinking tea in a sunlit wooden living room" style='background-image: linear-gradient(180deg, rgba(0,0,0,0) 50%, rgba(108,79,55,0.7) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuCAwzsKCafGPLnwBw2vZeFNl645WjEW8juk0fQJmmvcyyNuBRyTcC5ttz17zRyDYWT0CxdwzdpUBuvEiQL4fGuXucnXFKeuxqicGPSVJCl4QNcAvqfmvxikjymETjYtxsrKck1f3BBc2W0L0uabZvJ3X9Dk43MY_tucQjRobnCI6_36VIfynT51u7CAPdFexwU_xP24YjO6OlG_wYfUvb_AQ75yhGTzswACk9r-ASeNx6e4ZqE69NzNUtvCdHhPx8SHraEZH12-YPQ");'>
+<div class="absolute bottom-0 left-0 p-8">
+<span class="bg-gold text-white text-sm font-bold px-3 py-1 rounded-full mb-3 inline-block">오늘의 따뜻한 제안</span>
+<h2 class="text-3xl font-extrabold text-white leading-tight">편안한 일상을 위한<br/>따뜻한 선택</h2>
+<p class="text-white/90 mt-2 text-lg">우리가 선별한 정성스러운 물건들</p>
+</div>
+</div>
+</div>
+<!-- Section Header -->
+<div class="px-6 pt-8 pb-4 flex justify-between items-end">
+<div>
+<h3 class="text-2xl font-extrabold text-[#161413] dark:text-white">오늘의 추천 상품</h3>
+<p class="text-primary/70 font-medium">시니어 고객님들이 가장 많이 찾으시는 상품</p>
+</div>
+<button class="text-primary font-bold flex items-center gap-1">
+                더보기 <span class="material-symbols-outlined !text-[18px]">arrow_forward_ios</span>
+</button>
+</div>
+<!-- Bento Grid Products -->
+<div class="grid grid-cols-1 gap-6 px-4">
+<!-- Large Product Card 1 -->
+<div class="bg-cream dark:bg-background-dark/40 rounded-xl overflow-hidden shadow-sm border border-primary/5 flex flex-col @container">
+<div class="h-64 bg-center bg-cover" data-alt="Bag of premium mixed organic grains" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuChlFZ4tOex4CCByvJkiOWJfjrXmg8aK7RZgKO9-fQ34m1XcVREirjoSIODTmEmz85xrbXcI1DEoipUSGlTOl_ZWxJ3-y5OozuhKgg7q-72pe0elwNKHvBKsxNgis0WpEyD-ZL1QSj8OCQShBxiD6XqrTNZa-gC7vTRlKKUfI5IoxuqMOrDA95l9_j6E8zCnXhZSNgdPNkn8TnRPOhJtVyufwMhmE4Lul9wEonv3YKXBc5kjhnX7f3FdIGmP6kPN5J8ED97Pj3GPrg");'>
+<div class="p-4">
+<span class="bg-sage text-white text-xs font-bold px-2 py-1 rounded-md">베스트셀러</span>
+</div>
+</div>
+<div class="p-6 flex flex-col gap-3">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="text-2xl font-extrabold text-primary mb-1">프리미엄 유기농 곡물 세트</h4>
+<p class="text-[#7e746d] text-lg leading-relaxed">부드러운 소화와 건강을 위한 최고의 선택</p>
+</div>
+<span class="text-2xl font-black text-primary">35,000원</span>
+</div>
+<button class="w-full bg-primary hover:bg-primary/90 text-white py-5 rounded-xl text-xl font-bold flex items-center justify-center gap-2 transition-colors">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+                        장바구니 담기
+                    </button>
+</div>
+</div>
+<!-- Large Product Card 2 -->
+<div class="bg-cream dark:bg-background-dark/40 rounded-xl overflow-hidden shadow-sm border border-primary/5 flex flex-col @container">
+<div class="h-64 bg-center bg-cover" data-alt="Orthopedic soft walking shoes for seniors" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC5qIS3wDrPzi-oaYnUMTRl-DodGz2t9tb58zB9lxHzb9hyivMMSze8UkZvzNAb2SmPuZY-DjcCOVkAUiRvrzqi7C4OUZd1EnvcvAFmAc6rhRAAjy7V0rBfoyZLQ0E8rtRF0WUxKRfm3FQI9dbDN84z42GS7QGwpBos4lKNBokvYFo5kWUu4fNIhx5mIdWvvkjgP1sFmc-9g4iYjHwdg6Yo-HxD6WcvYFhpY-j1IF9XIu4LlawYnInqD6e2yLacXwMSw2ABPPZNpmE");'>
+<div class="p-4">
+<span class="bg-gold text-white text-xs font-bold px-2 py-1 rounded-md">무료 배송</span>
+</div>
+</div>
+<div class="p-6 flex flex-col gap-3">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="text-2xl font-extrabold text-primary mb-1">폭신한 구름 보행화</h4>
+<p class="text-[#7e746d] text-lg leading-relaxed">발이 편안한 인체공학적 설계와 미끄럼 방지</p>
+</div>
+<span class="text-2xl font-black text-primary">49,000원</span>
+</div>
+<button class="w-full bg-primary hover:bg-primary/90 text-white py-5 rounded-xl text-xl font-bold flex items-center justify-center gap-2 transition-colors">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+                        장바구니 담기
+                    </button>
+</div>
+</div>
+<!-- Horizontal Small Card -->
+<div class="bg-cream dark:bg-background-dark/40 rounded-xl p-4 flex gap-4 border border-primary/5">
+<div class="w-32 h-32 shrink-0 rounded-lg bg-cover bg-center" data-alt="Premium red ginseng extract bottle" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAirxOQKQHGDuDfBu6BJGOXiiIxuBC3lu1PnTOCynSTNNjSla6gImL6_RoDsvcorrVX89C6dEbs2k1P4CK2w9PjxbXlsJGn9c6dcLhOn7dpX_02xWOva4xHCXwWO2KsP_yiHH4jsESvVjpEQhqm_Fcc6hnDwXQdkn6OqCyyCCQSRNwv-rphlBnk_0Jqpttd-nSTsH_kHrTRZzeNDj2ggUt50KqpO4PKFXbCreLL4qnEMlfgNTW_s30ouLRAKzKm5Ud8vnaQt21PTec");'></div>
+<div class="flex flex-col justify-between py-1 flex-1">
+<div>
+<h4 class="text-xl font-extrabold text-primary leading-tight">명품 고려 홍삼정</h4>
+<p class="text-[#7e746d] text-base">환절기 기력 보강</p>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-xl font-black text-primary">88,000원</span>
+<button class="p-2 bg-primary/10 rounded-lg text-primary">
+<span class="material-symbols-outlined !text-[24px]">shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Decorative Quote / Banner -->
+<div class="mx-4 mt-10 p-10 bg-primary/5 rounded-xl text-center border-2 border-dashed border-primary/20">
+<span class="material-symbols-outlined text-primary/40 block mb-4 !text-[48px]">format_quote</span>
+<p class="text-xl font-bold text-primary italic leading-relaxed">
+                "나이 듦은 쇠퇴가 아니라<br/>성숙의 아름다운 과정입니다."
+            </p>
+<p class="mt-4 text-primary/60 font-medium">카페 마켓 올림</p>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<div class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[92%] max-w-md bg-white/90 dark:bg-background-dark/95 backdrop-blur-xl rounded-full shadow-2xl border border-primary/10 p-2 flex items-center justify-around z-50">
+<button class="flex flex-col items-center justify-center gap-1 active-tab p-3 rounded-full w-20 transition-all">
+<span class="material-symbols-outlined">home</span>
+<span class="text-xs font-bold">홈</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-1 p-3 text-primary/60 w-20">
+<span class="material-symbols-outlined">search</span>
+<span class="text-xs font-bold">검색</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-1 p-3 text-primary/60 w-20">
+<span class="material-symbols-outlined">favorite</span>
+<span class="text-xs font-bold">찜</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-1 p-3 text-primary/60 w-20">
+<span class="material-symbols-outlined">person</span>
+<span class="text-xs font-bold">마이</span>
+</button>
+</div>
+</body></html>

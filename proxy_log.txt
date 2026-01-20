@@ -1,0 +1,241 @@
+
+> antigravity-claude-proxy@1.2.6 start
+> node src/index.js
+
+[90m[2026-01-14T16:27:18.263Z][0m [34m[INFO][0m [WebUI] Mounted at /
+
+╔══════════════════════════════════════════════════════════════╗
+║           Antigravity Claude Proxy Server                    ║
+╠══════════════════════════════════════════════════════════════╣
+║                                                              ║
+║  Server running at: http://localhost:8080                    ║
+║                                                              ║
+║  Control:                                                    ║
+║    --debug            Enable debug logging                   ║
+║    --fallback         Enable model fallback on quota exhaust ║
+║    Ctrl+C             Stop server                            ║
+║                                                              ║
+║  Endpoints:                                                  ║
+║    POST /v1/messages         - Anthropic Messages API        ║
+║    GET  /v1/models           - List available models         ║
+║    GET  /health              - Health check                  ║
+║    GET  /account-limits      - Account status & quotas       ║
+║    POST /refresh-token       - Force token refresh           ║
+║                                                              ║
+║  Configuration:                                              ║
+║    Storage: C:\Users\DRJAY\.antigravity-claude-proxy         ║
+║                                                              ║
+║  Usage with Claude Code:                                     ║
+║    export ANTHROPIC_BASE_URL=http://localhost:8080           ║
+║    export ANTHROPIC_API_KEY=dummy                            ║
+║    claude                                                    ║
+║                                                              ║
+║  Add Google accounts:                                        ║
+║    npm run accounts                                          ║
+║                                                              ║
+║  Prerequisites (if no accounts configured):                  ║
+║    - Antigravity must be running                             ║
+║    - Have a chat panel open in Antigravity                   ║
+║                                                              ║
+╚══════════════════════════════════════════════════════════════╝
+  
+[90m[2026-01-14T16:27:18.267Z][0m [32m[SUCCESS][0m Server started successfully on port 8080
+[90m[2026-01-14T16:28:32.795Z][0m [34m[INFO][0m [POST] /v1/messages/count_tokens
+[90m[2026-01-14T16:28:33.224Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:28:33.227Z][0m [34m[INFO][0m [AccountManager] Loaded 3 account(s) from config
+[90m[2026-01-14T16:28:33.227Z][0m [32m[SUCCESS][0m [Server] Account pool initialized: 3 total, 3 available, 0 rate-limited, 0 invalid
+[90m[2026-01-14T16:28:33.228Z][0m [34m[INFO][0m [API] Request for model: gemini-2.5-flash-lite, stream: true
+[90m[2026-01-14T16:28:33.262Z][0m [34m[INFO][0m [POST] /v1/messages/count_tokens
+[90m[2026-01-14T16:28:33.268Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:28:33.268Z][0m [34m[INFO][0m [API] Request for model: gemini-2.5-flash-lite, stream: false
+[90m[2026-01-14T16:28:33.453Z][0m [32m[SUCCESS][0m [AccountManager] Refreshed OAuth token for: drjang00@gmail.com
+[90m[2026-01-14T16:28:33.471Z][0m [32m[SUCCESS][0m [AccountManager] Refreshed OAuth token for: drjang00@gmail.com
+[90m[2026-01-14T16:28:34.210Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:28:34.211Z][0m [34m[INFO][0m [API] Request for model: gemini-2.5-flash-lite, stream: true
+[90m[2026-01-14T16:28:34.801Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:28:34.802Z][0m [34m[INFO][0m [API] Request for model: gemini-2.5-flash-lite, stream: true
+[90m[2026-01-14T16:28:35.318Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:28:35.319Z][0m [34m[INFO][0m [API] Request for model: gemini-2.5-flash-lite, stream: true
+[90m[2026-01-14T16:28:35.734Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:28:35.735Z][0m [34m[INFO][0m [API] Request for model: gemini-2.5-flash-lite, stream: true
+[90m[2026-01-14T16:28:36.347Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:28:36.348Z][0m [34m[INFO][0m [API] Request for model: gemini-2.5-flash-lite, stream: true
+[90m[2026-01-14T16:28:36.902Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:28:36.903Z][0m [34m[INFO][0m [API] Request for model: gemini-2.5-flash-lite, stream: true
+[90m[2026-01-14T16:28:37.493Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:28:37.494Z][0m [34m[INFO][0m [API] Request for model: gemini-2.5-flash-lite, stream: true
+[90m[2026-01-14T16:28:38.099Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:28:38.100Z][0m [34m[INFO][0m [API] Request for model: gemini-2.5-flash-lite, stream: true
+[90m[2026-01-14T16:28:38.853Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:28:38.854Z][0m [34m[INFO][0m [API] Request for model: gemini-2.5-flash-lite, stream: true
+[90m[2026-01-14T16:28:39.547Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:28:39.548Z][0m [34m[INFO][0m [API] Request for model: gemini-2.5-flash-lite, stream: true
+[90m[2026-01-14T16:28:40.216Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:28:40.217Z][0m [34m[INFO][0m [API] Request for model: gemini-2.5-flash-lite, stream: true
+[90m[2026-01-14T16:28:49.731Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:28:49.732Z][0m [34m[INFO][0m [API] Request for model: gemini-2.5-flash-lite, stream: true
+[90m[2026-01-14T16:28:49.754Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:28:49.754Z][0m [34m[INFO][0m [API] Request for model: claude-sonnet-4-5-thinking, stream: true
+[90m[2026-01-14T16:28:59.850Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:28:59.851Z][0m [34m[INFO][0m [API] Request for model: gemini-2.5-flash-lite, stream: true
+[90m[2026-01-14T16:29:26.717Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:29:26.718Z][0m [34m[INFO][0m [API] Request for model: gemini-2.5-flash-lite, stream: true
+[90m[2026-01-14T16:29:27.230Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:29:27.231Z][0m [34m[INFO][0m [API] Request for model: claude-sonnet-4-5-thinking, stream: true
+[90m[2026-01-14T16:29:37.845Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:29:37.845Z][0m [34m[INFO][0m [API] Request for model: claude-sonnet-4-5-thinking, stream: true
+[90m[2026-01-14T16:29:43.098Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:29:43.099Z][0m [34m[INFO][0m [API] Request for model: claude-sonnet-4-5-thinking, stream: true
+[90m[2026-01-14T16:30:17.058Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:30:17.059Z][0m [34m[INFO][0m [API] Request for model: gemini-2.5-flash-lite, stream: true
+[90m[2026-01-14T16:30:17.104Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:30:17.104Z][0m [34m[INFO][0m [API] Request for model: claude-sonnet-4-5-thinking, stream: true
+[90m[2026-01-14T16:30:22.561Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:30:22.562Z][0m [34m[INFO][0m [API] Request for model: gemini-2.5-flash-lite, stream: true
+[90m[2026-01-14T16:30:23.216Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:30:23.216Z][0m [34m[INFO][0m [API] Request for model: gemini-2.5-flash-lite, stream: true
+[90m[2026-01-14T16:30:25.907Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:30:25.907Z][0m [34m[INFO][0m [API] Request for model: gemini-2.5-flash-lite, stream: true
+[90m[2026-01-14T16:30:26.320Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:30:26.321Z][0m [34m[INFO][0m [API] Request for model: claude-sonnet-4-5-thinking, stream: true
+[90m[2026-01-14T16:30:29.801Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:30:29.802Z][0m [34m[INFO][0m [API] Request for model: gemini-2.5-flash-lite, stream: true
+[90m[2026-01-14T16:30:33.122Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:30:33.123Z][0m [34m[INFO][0m [API] Request for model: claude-sonnet-4-5-thinking, stream: true
+[90m[2026-01-14T16:30:36.145Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:30:36.145Z][0m [34m[INFO][0m [API] Request for model: gemini-2.5-flash-lite, stream: true
+[90m[2026-01-14T16:30:38.748Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:30:38.749Z][0m [34m[INFO][0m [API] Request for model: gemini-2.5-flash-lite, stream: true
+[90m[2026-01-14T16:30:39.178Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:30:39.179Z][0m [34m[INFO][0m [API] Request for model: claude-sonnet-4-5-thinking, stream: true
+[90m[2026-01-14T16:30:44.997Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:30:44.998Z][0m [34m[INFO][0m [API] Request for model: gemini-2.5-flash-lite, stream: true
+[90m[2026-01-14T16:30:45.454Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:30:45.455Z][0m [34m[INFO][0m [API] Request for model: claude-sonnet-4-5-thinking, stream: true
+[90m[2026-01-14T16:30:53.316Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:30:53.317Z][0m [34m[INFO][0m [API] Request for model: gemini-2.5-flash-lite, stream: true
+[90m[2026-01-14T16:30:53.718Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:30:53.719Z][0m [34m[INFO][0m [API] Request for model: claude-sonnet-4-5-thinking, stream: true
+[90m[2026-01-14T16:30:58.558Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:30:58.559Z][0m [34m[INFO][0m [API] Request for model: gemini-2.5-flash-lite, stream: true
+[90m[2026-01-14T16:30:58.575Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:30:58.575Z][0m [34m[INFO][0m [API] Request for model: claude-sonnet-4-5-thinking, stream: true
+[90m[2026-01-14T16:31:10.708Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:31:10.708Z][0m [34m[INFO][0m [API] Request for model: claude-sonnet-4-5-thinking, stream: true
+[90m[2026-01-14T16:31:19.356Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:31:19.357Z][0m [34m[INFO][0m [API] Request for model: claude-sonnet-4-5-thinking, stream: true
+[90m[2026-01-14T16:31:23.048Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:31:23.049Z][0m [34m[INFO][0m [API] Request for model: claude-sonnet-4-5-thinking, stream: true
+[90m[2026-01-14T16:31:30.353Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:31:30.354Z][0m [34m[INFO][0m [API] Request for model: gemini-2.5-flash-lite, stream: true
+[90m[2026-01-14T16:31:30.745Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:31:30.746Z][0m [34m[INFO][0m [API] Request for model: claude-sonnet-4-5-thinking, stream: true
+[90m[2026-01-14T16:32:58.925Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:32:58.926Z][0m [34m[INFO][0m [API] Request for model: gemini-2.5-flash-lite, stream: true
+[90m[2026-01-14T16:32:58.946Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:32:58.947Z][0m [34m[INFO][0m [API] Request for model: claude-sonnet-4-5-thinking, stream: true
+[90m[2026-01-14T16:33:12.215Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:33:12.215Z][0m [34m[INFO][0m [API] Request for model: claude-sonnet-4-5-thinking, stream: true
+[90m[2026-01-14T16:33:20.991Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:33:20.992Z][0m [34m[INFO][0m [API] Request for model: claude-sonnet-4-5-thinking, stream: true
+[90m[2026-01-14T16:33:34.709Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:33:34.710Z][0m [34m[INFO][0m [API] Request for model: claude-sonnet-4-5-thinking, stream: true
+[90m[2026-01-14T16:33:34.915Z][0m [32m[SUCCESS][0m [AccountManager] Refreshed OAuth token for: drjang00@gmail.com
+[90m[2026-01-14T16:34:15.041Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:34:15.041Z][0m [34m[INFO][0m [API] Request for model: gemini-2.5-flash-lite, stream: true
+[90m[2026-01-14T16:34:15.072Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:34:15.072Z][0m [34m[INFO][0m [API] Request for model: claude-sonnet-4-5-thinking, stream: true
+[90m[2026-01-14T16:34:15.771Z][0m [33m[WARN][0m [CloudCode] Stream error at https://daily-cloudcode-pa.googleapis.com: 429 - {
+  "error": {
+    "code": 429,
+    "message": "No capacity available for model claude-sonnet-4-5-thinking on the server",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+        "reason": "MODEL_CAPACITY_EXHAUSTED",
+        "domain": "cloudcode-pa.googleapis.com",
+        "metadata": {
+          "model": "claude-sonnet-4-5-thinking"
+        }
+      }
+    ]
+  }
+}
+
+[90m[2026-01-14T16:34:17.512Z][0m [33m[WARN][0m [CloudCode] Stream error at https://cloudcode-pa.googleapis.com: 429 - {
+  "error": {
+    "code": 429,
+    "message": "No capacity available for model claude-sonnet-4-5-thinking on the server",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+        "reason": "MODEL_CAPACITY_EXHAUSTED",
+        "domain": "cloudcode-pa.googleapis.com",
+        "metadata": {
+          "model": "claude-sonnet-4-5-thinking"
+        }
+      }
+    ]
+  }
+}
+
+[90m[2026-01-14T16:34:17.513Z][0m [33m[WARN][0m [CloudCode] All endpoints rate-limited for drjang00@gmail.com
+[90m[2026-01-14T16:34:17.514Z][0m [33m[WARN][0m [AccountManager] Rate limited: drjang00@gmail.com (model: claude-sonnet-4-5-thinking). Available in 10s
+[90m[2026-01-14T16:34:17.515Z][0m [34m[INFO][0m [CloudCode] Account drjang00@gmail.com rate-limited, trying next...
+[90m[2026-01-14T16:34:17.515Z][0m [34m[INFO][0m [AccountManager] Using account: drjang000@gmail.com (2/3)
+[90m[2026-01-14T16:34:17.516Z][0m [34m[INFO][0m [AccountManager] Switched to new account (failover): drjang000@gmail.com
+[90m[2026-01-14T16:34:17.736Z][0m [32m[SUCCESS][0m [AccountManager] Refreshed OAuth token for: drjang000@gmail.com
+[90m[2026-01-14T16:34:19.688Z][0m [33m[WARN][0m [CloudCode] Stream error at https://daily-cloudcode-pa.googleapis.com: 429 - {
+  "error": {
+    "code": 429,
+    "message": "No capacity available for model claude-sonnet-4-5-thinking on the server",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+        "reason": "MODEL_CAPACITY_EXHAUSTED",
+        "domain": "cloudcode-pa.googleapis.com",
+        "metadata": {
+          "model": "claude-sonnet-4-5-thinking"
+        }
+      }
+    ]
+  }
+}
+
+[90m[2026-01-14T16:34:21.050Z][0m [33m[WARN][0m [CloudCode] Stream error at https://cloudcode-pa.googleapis.com: 429 - {
+  "error": {
+    "code": 429,
+    "message": "Resource has been exhausted (e.g. check quota).",
+    "status": "RESOURCE_EXHAUSTED"
+  }
+}
+
+[90m[2026-01-14T16:34:21.051Z][0m [33m[WARN][0m [CloudCode] All endpoints rate-limited for drjang000@gmail.com
+[90m[2026-01-14T16:34:21.051Z][0m [33m[WARN][0m [AccountManager] Rate limited: drjang000@gmail.com (model: claude-sonnet-4-5-thinking). Available in 10s
+[90m[2026-01-14T16:34:21.052Z][0m [34m[INFO][0m [CloudCode] Account drjang000@gmail.com rate-limited, trying next...
+[90m[2026-01-14T16:34:21.052Z][0m [34m[INFO][0m [AccountManager] Using account: drjang001@gmail.com (3/3)
+[90m[2026-01-14T16:34:21.053Z][0m [34m[INFO][0m [AccountManager] Switched to new account (failover): drjang001@gmail.com
+[90m[2026-01-14T16:34:21.147Z][0m [32m[SUCCESS][0m [AccountManager] Refreshed OAuth token for: drjang001@gmail.com
+[90m[2026-01-14T16:34:30.354Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:34:30.355Z][0m [34m[INFO][0m [API] Request for model: claude-sonnet-4-5-thinking, stream: true
+[90m[2026-01-14T16:34:30.355Z][0m [32m[SUCCESS][0m [AccountManager] Rate limit expired for: drjang00@gmail.com (model: claude-sonnet-4-5-thinking)
+[90m[2026-01-14T16:35:03.699Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:35:03.699Z][0m [34m[INFO][0m [API] Request for model: claude-sonnet-4-5-thinking, stream: true
+[90m[2026-01-14T16:35:03.700Z][0m [32m[SUCCESS][0m [AccountManager] Rate limit expired for: drjang000@gmail.com (model: claude-sonnet-4-5-thinking)
+[90m[2026-01-14T16:35:11.638Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:35:11.639Z][0m [34m[INFO][0m [API] Request for model: claude-sonnet-4-5-thinking, stream: true
+[90m[2026-01-14T16:35:15.635Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:35:15.635Z][0m [34m[INFO][0m [API] Request for model: gemini-2.5-flash-lite, stream: true
+[90m[2026-01-14T16:35:52.792Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:35:52.792Z][0m [34m[INFO][0m [API] Request for model: gemini-2.5-flash-lite, stream: true
+[90m[2026-01-14T16:35:53.329Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:35:53.330Z][0m [34m[INFO][0m [API] Request for model: claude-sonnet-4-5-thinking, stream: true
+[90m[2026-01-14T16:38:29.553Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:38:29.554Z][0m [34m[INFO][0m [API] Request for model: gemini-2.5-flash-lite, stream: true
+[90m[2026-01-14T16:38:30.074Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:38:30.075Z][0m [34m[INFO][0m [API] Request for model: claude-sonnet-4-5-thinking, stream: true
+[90m[2026-01-14T16:38:34.870Z][0m [34m[INFO][0m [POST] /v1/messages
+[90m[2026-01-14T16:38:34.871Z][0m [34m[INFO][0m [API] Request for model: gemini-2.5-flash-lite, stream: true
