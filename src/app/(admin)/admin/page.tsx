@@ -63,6 +63,17 @@ export default function AdminDashboard() {
             {/* 4. Quick Actions Grid */}
             <h3 className="text-xl font-bold text-gray-900 mb-4">빠른 바로가기</h3>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                {/* Category Card */}
+                <Link href="/admin/categories" className="group">
+                    <div className="bg-white p-5 rounded-xl shadow-sm border border-gray-200 hover:shadow-md hover:border-orange-500/50 transition-all h-full">
+                        <div className="flex items-center gap-3 mb-2">
+                            <span className="material-symbols-outlined text-orange-600 bg-orange-50 p-2 rounded-lg">category</span>
+                            <h3 className="font-bold text-gray-900">카테고리 관리</h3>
+                        </div>
+                        <p className="text-sm text-gray-500">카테고리 및 디자인 편집</p>
+                    </div>
+                </Link>
+
                 {/* Products Card */}
                 <Link href="/admin/products" className="group">
                     <div className="bg-white p-5 rounded-xl shadow-sm border border-gray-200 hover:shadow-md hover:border-blue-500/50 transition-all h-full">

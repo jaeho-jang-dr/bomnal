@@ -18,11 +18,19 @@ interface Product {
   description: string;
   image: string;
   tag?: string;
+  stock?: number;
 }
+
+const CATEGORIES = [
+  { id: 'mobility', name: '이동/안전' },
+  { id: 'daily', name: '생활/돌봄' },
+  { id: 'fashion', name: '패션/편의' },
+  { id: 'health', name: '건강/힐링' },
+];
 
 const AdminProductsPage = () => {
   const [products, setProducts] = useState<Product[]>([]);
-  const [newProduct, setNewProduct] = useState({ name: '', price: '', description: '', image: '', tag: '' });
+  const [newProduct, setNewProduct] = useState({ name: '', price: '', description: '', image: '', tag: 'mobility', stock: '' });
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
   const [isSmartModalOpen, setIsSmartModalOpen] = useState(false);
   const [viewMode, setViewMode] = useState<'list' | 'grid'>('grid'); // Default to Grid for visual impact
@@ -37,12 +45,12 @@ const AdminProductsPage = () => {
     fetchProducts();
   }, []);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setNewProduct({ ...newProduct, [name]: value });
   };
 
-  const handleEditInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleEditInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     if (!editingProduct) return;
     const { name, value } = e.target;
     setEditingProduct({ ...editingProduct, [name]: value });
@@ -58,8 +66,9 @@ const AdminProductsPage = () => {
       description: newProduct.description,
       image: newProduct.image,
       tag: newProduct.tag,
+      stock: newProduct.stock ? parseInt(newProduct.stock) : 0,
     });
-    setNewProduct({ name: '', price: '', description: '', image: '', tag: '' });
+    setNewProduct({ name: '', price: '', description: '', image: '', tag: 'mobility', stock: '' });
     fetchProducts();
   };
 
@@ -82,6 +91,7 @@ const AdminProductsPage = () => {
       description: editingProduct.description,
       image: editingProduct.image,
       tag: editingProduct.tag,
+      stock: typeof editingProduct.stock === 'string' ? parseInt(editingProduct.stock || '0') : editingProduct.stock,
     });
     setEditingProduct(null);
     fetchProducts();
@@ -150,7 +160,7 @@ const AdminProductsPage = () => {
         </div>
       </div>
 
-      {/* Add Product Form (Collapsed state could be better, but keeping it visible for now) */}
+      {/* Add Product Form */}
       <form onSubmit={handleAddProduct} className="mb-8 bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
         <h2 className="text-lg font-bold mb-4 flex items-center gap-2">
           <div className="bg-blue-100 p-1.5 rounded-lg text-blue-600">
@@ -181,6 +191,16 @@ const AdminProductsPage = () => {
               required
             />
           </div>
+          <div className="md:col-span-1">
+            <input
+              type="number"
+              name="stock"
+              value={newProduct.stock}
+              onChange={handleInputChange}
+              placeholder="재고수량"
+              className="p-3 bg-gray-50 border border-gray-200 rounded-xl w-full focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all"
+            />
+          </div>
           <div className="md:col-span-2">
             <input
               type="text"
@@ -191,11 +211,7 @@ const AdminProductsPage = () => {
               className="p-3 bg-gray-50 border border-gray-200 rounded-xl w-full focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all"
             />
           </div>
-          <div className="md:col-span-1">
-            <button type="submit" className="bg-blue-600 text-white w-full h-full rounded-xl font-bold hover:bg-blue-700 transition-colors">
-              추가
-            </button>
-          </div>
+
           {/* Secondary Row */}
           <div className="md:col-span-3">
             <input
@@ -207,15 +223,23 @@ const AdminProductsPage = () => {
               className="p-3 bg-gray-50 border border-gray-200 rounded-xl w-full focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all"
             />
           </div>
-          <div className="md:col-span-3">
-            <input
-              type="text"
+          <div className="md:col-span-2">
+            <select
               name="tag"
               value={newProduct.tag}
               onChange={handleInputChange}
-              placeholder="태그 (예: BEST, NEW)"
-              className="p-3 bg-gray-50 border border-gray-200 rounded-xl w-full focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all"
-            />
+              className="p-3 bg-gray-50 border border-gray-200 rounded-xl w-full focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all appearance-none"
+            >
+              <option value="" disabled>카테고리 선택</option>
+              {CATEGORIES.map(cat => (
+                <option key={cat.id} value={cat.id}>{cat.name}</option>
+              ))}
+            </select>
+          </div>
+          <div className="md:col-span-1">
+            <button type="submit" className="bg-blue-600 text-white w-full h-full rounded-xl font-bold hover:bg-blue-700 transition-colors">
+              추가
+            </button>
           </div>
         </div>
       </form>
@@ -233,7 +257,15 @@ const AdminProductsPage = () => {
                     {editingProduct.image && <Image src={editingProduct.image} alt="Preview" fill className="object-cover opacity-50" />}
                   </div>
                   <input type="text" name="name" value={editingProduct.name} onChange={handleEditInputChange} className="w-full font-bold p-1 border rounded" />
-                  <input type="number" name="price" value={editingProduct.price} onChange={handleEditInputChange} className="w-full p-1 border rounded" />
+                  <div className="flex gap-2">
+                    <input type="number" name="price" value={editingProduct.price} onChange={handleEditInputChange} className="w-1/2 p-1 border rounded" placeholder="Price" />
+                    <input type="number" name="stock" value={editingProduct.stock || ''} onChange={handleEditInputChange} className="w-1/2 p-1 border rounded" placeholder="Stock" />
+                  </div>
+                  <select name="tag" value={editingProduct.tag} onChange={handleEditInputChange} className="w-full p-1 border rounded text-sm">
+                    {CATEGORIES.map(cat => (
+                      <option key={cat.id} value={cat.id}>{cat.name}</option>
+                    ))}
+                  </select>
                   <textarea name="description" value={editingProduct.description} onChange={handleEditInputChange} className="w-full p-1 border rounded text-xs" rows={2} />
                   <div className="flex gap-2 pt-2">
                     <button onClick={handleUpdateProduct} className="flex-1 bg-green-500 text-white py-1.5 rounded-lg text-sm font-bold">저장</button>
@@ -258,7 +290,7 @@ const AdminProductsPage = () => {
                     </div>
                     {product.tag && (
                       <span className="absolute top-3 left-3 bg-black/50 backdrop-blur-md text-white text-xs px-2 py-1 rounded-full font-medium">
-                        {product.tag}
+                        {CATEGORIES.find(c => c.id === product.tag)?.name || product.tag}
                       </span>
                     )}
                   </div>
@@ -267,6 +299,7 @@ const AdminProductsPage = () => {
                     <p className="text-sm text-gray-500 mb-3 line-clamp-2 h-10">{product.description}</p>
                     <div className="flex justify-between items-center">
                       <span className="font-bold text-lg text-gray-900">₩{product.price.toLocaleString()}</span>
+                      <span className="text-sm text-gray-500 font-medium">재고: {product.stock?.toLocaleString() || 0}개</span>
                     </div>
                   </div>
                 </>
@@ -283,8 +316,8 @@ const AdminProductsPage = () => {
             <thead className="bg-gray-50/50">
               <tr>
                 <th className="py-4 px-6 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">상품 정보</th>
-                <th className="py-4 px-6 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">가격</th>
-                <th className="py-4 px-6 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">태그</th>
+                <th className="py-4 px-6 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">가격/재고</th>
+                <th className="py-4 px-6 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">카테고리</th>
                 <th className="py-4 px-6 text-right text-xs font-semibold text-gray-500 uppercase tracking-wider">관리</th>
               </tr>
             </thead>
@@ -311,28 +344,47 @@ const AdminProductsPage = () => {
                   </td>
                   <td className="py-4 px-6">
                     {editingProduct?.id === product.id ? (
-                      <input
-                        type="number"
-                        name="price"
-                        value={editingProduct.price}
-                        onChange={handleEditInputChange}
-                        className="p-1 border rounded w-full"
-                      />
+                      <div className="space-y-1">
+                        <input
+                          type="number"
+                          name="price"
+                          value={editingProduct.price}
+                          onChange={handleEditInputChange}
+                          className="p-1 border rounded w-full"
+                          placeholder="Price"
+                        />
+                        <input
+                          type="number"
+                          name="stock"
+                          value={editingProduct.stock || ''}
+                          onChange={handleEditInputChange}
+                          className="p-1 border rounded w-full"
+                          placeholder="Stock"
+                        />
+                      </div>
                     ) : (
-                      <span className="font-medium">₩{product.price.toLocaleString()}</span>
+                      <div>
+                        <div className="font-medium">₩{product.price.toLocaleString()}</div>
+                        <div className="text-xs text-gray-500">재고: {product.stock?.toLocaleString() || 0}개</div>
+                      </div>
                     )}
                   </td>
                   <td className="py-4 px-6">
                     {editingProduct?.id === product.id ? (
-                      <input
-                        type="text"
+                      <select
                         name="tag"
                         value={editingProduct.tag || ''}
                         onChange={handleEditInputChange}
                         className="p-1 border rounded w-full"
-                      />
+                      >
+                        {CATEGORIES.map(cat => (
+                          <option key={cat.id} value={cat.id}>{cat.name}</option>
+                        ))}
+                      </select>
                     ) : (
-                      product.tag && <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800 border border-gray-200">{product.tag}</span>
+                      product.tag && <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800 border border-gray-200">
+                        {CATEGORIES.find(c => c.id === product.tag)?.name || product.tag}
+                      </span>
                     )}
                   </td>
                   <td className="py-4 px-6 text-right">

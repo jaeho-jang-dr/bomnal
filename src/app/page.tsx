@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { AuthModal } from "@/components/auth/AuthModal";
+import Link from "next/link";
 import { useAuthContext } from "@/context/AuthContext";
 import { signOutUser } from "@/lib/firebase/auth";
 import { CartIcon } from "@/components/cart/CartIcon";
@@ -16,7 +16,6 @@ import { TrendingProducts, DisplayProduct } from "@/components/home/TrendingProd
 import { TrustSignals } from "@/components/home/TrustSignals";
 
 export default function Home() {
-  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const { user } = useAuthContext();
   const [products, setProducts] = useState<DisplayProduct[]>([]);
@@ -30,21 +29,8 @@ export default function Home() {
     fetchProducts();
   }, []);
 
-  const handleProfileClick = () => {
-    if (user) {
-      signOutUser();
-    } else {
-      setIsAuthModalOpen(true);
-    }
-  };
-
   return (
     <>
-      {isAuthModalOpen && (
-        <AuthModal
-          onClose={() => setIsAuthModalOpen(false)}
-        />
-      )}
       <CartView isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
 
       <div className="bg-background-light dark:bg-background-dark font-display text-text-main antialiased selection:bg-primary selection:text-white pb-24 min-h-screen">
@@ -64,20 +50,19 @@ export default function Home() {
                 Senior Shop
               </h1>
             </div>
-            <div className="flex items-center gap-4">
-              <button
-                className="flex items-center justify-center text-text-main dark:text-white p-1 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors cursor-pointer"
-                aria-label="Search"
-              >
-                <span className="material-symbols-outlined">search</span>
-              </button>
-              <CartIcon onClick={() => setIsCartOpen(true)} />
-            </div>
+            <Link
+              href={user ? "/orders" : "/login"}
+              className="flex items-center justify-center text-text-main dark:text-white p-1 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors cursor-pointer"
+              aria-label={user ? "My Orders" : "Login"}
+            >
+              <span className="material-symbols-outlined">{user ? 'person' : 'login'}</span>
+            </Link>
+            <CartIcon onClick={() => setIsCartOpen(true)} />
           </div>
         </nav>
 
         {/* Hero Section */}
-        <header className="relative w-full overflow-hidden">
+        < header className="relative w-full overflow-hidden" >
           <div className="relative h-[420px] w-full">
             <HeroVideoBackground />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent z-30"></div>
@@ -104,14 +89,14 @@ export default function Home() {
         </header>
 
         {/* Home Page Content Components */}
-        <CategoryChips />
+        < CategoryChips />
         <DirectorTrust />
         <TrendingProducts products={products} />
         <TrustSignals />
 
         {/* Safe area spacing for phones with home indicators */}
         <div className="h-6"></div>
-      </div>
+      </div >
     </>
   );
 }
