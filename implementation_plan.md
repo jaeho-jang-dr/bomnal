@@ -1,46 +1,62 @@
 # Bomnal Project Implementation Plan
 
-## 1. Core Technology Setup
-*   **Backend**: Use Firebase for Authentication, Firestore (database), and Storage.
-*   **State Management**: Use `zustand` for global client-side state (user session, shopping cart).
-*   **Configuration**:
-    *   Initialize Firebase in `src/lib/firebase/config.ts`.
-    *   Store sensitive keys in `.env.local`.
+## 1. Core Technology Setup (✅ Completed)
 
-## 2. Modular Authentication
-*   **Logic**: Create reusable Firebase auth functions in `src/lib/firebase/auth.ts`.
-*   **State**: Manage user session with a `useAuth` custom hook (`src/hooks/useAuth.ts`).
-*   **UI**: Build a single, reusable `AuthModal.tsx` in `src/components/auth/` for all login methods (Email, Google, etc.).
-*   **Integration**: Update navigation to show the auth modal or a user profile link.
+* **Backend**: Firebase (Auth, Firestore, Storage).
+* **State**: Zustand (`authStore`, `cartStore`).
+* **Config**: `src/lib/firebase/config.ts`.
 
-## 3. Shopping Cart
-*   **Backend**: Persist user carts in a `carts` collection in Firestore. Use local storage for guest carts.
-*   **State**: Manage cart items and totals with a `zustand` store (`src/store/cartStore.ts`).
-*   **UI**:
-    *   `CartIcon.tsx`: Display item count in the header.
-    *   `CartView.tsx`: A sidebar/modal showing cart details.
-    *   `src/app/checkout/page.tsx`: The main checkout page.
-*   **Integration**: Connect "Add to Cart" buttons and sync guest cart to Firestore upon login.
+## 2. Modular Authentication (✅ Completed)
 
-## 4. Admin Dashboard
-*   **Routing**: Create a protected admin section at `src/app/(admin)/admin/...`.
-*   **Backend (Firestore Collections)**:
-    *   `users`: To store user roles (e.g., `role: 'admin'`).
-    *   `products`: For all product information (CRUD).
-    *   `orders`: For all order information.
-*   **Features**:
-    *   **/admin/users**: Manage user roles.
-    *   **/admin/products**: Full CRUD for products.
-    *   **/admin/orders**: View and manage customer orders.
-    *   **/admin/settings**: Manage general site content.
+* **Logic**: `src/lib/firebase/auth.ts`.
+* **UI**: `src/app/login/page.tsx`.
 
-## 5. Dual Payment System
-*   **Checkout Page**: `src/app/checkout/page.tsx` will offer two payment choices.
-*   **Option 1: Naver Smart Store**
-    *   A simple "Pay with Naver" button that redirects the user to the appropriate Naver Smart Store URL.
-*   **Option 2: Direct Payment (PortOne)**
-    *   **Why PortOne?**: A payment aggregator that simplifies adding various Korean payment methods.
-    *   **Backend API Routes**:
-        *   `/api/payments/prepare`: To validate the cart and get a transaction ID from PortOne.
-        *   `/api/payments/webhook`: A secure endpoint for PortOne to call to confirm payment. This will trigger order creation in Firestore.
-    *   **UI**: A `DirectPayment.tsx` component to handle the PortOne SDK flow on the client-side.
+## 3. Shopping Cart (✅ Completed)
+
+* **Logic**: `src/store/cartStore.ts`.
+* **UI**: `CartView.tsx`, `CartItem.tsx`.
+
+## 4. Admin Dashboard (✅ Completed)
+
+* **Access Control**: Implemented via `useAuth` and Firestore logic.
+* **Product Management**: `AdminProductsPage` with CRUD.
+
+## 5. Final Feature Completion (🚧 Current Focus)
+
+### 5.1 Extended Authentication (Login Page) (✅ Completed)
+
+* **Goal**: Add Naver & Kakao Login support.
+* **File**: `src/app/login/page.tsx`, `src/lib/firebase/auth.ts`
+* **Tasks**:
+  * ✅ Add "Naver Login" and "Kakao Login" buttons.
+  * ✅ Implement Firebase OIDC logic (`oidc.naver`, `oidc.kakao`).
+  * ✅ User configured Firebase Console & Developer Portals.
+
+### 5.2 Admin Product "Smart Input" Optimization (✅ Completed)
+
+* **Goal**: Ensure "Input by URL" and "Smart Analysis" work perfectly.
+* **File**: `src/app/api/admin/analyze-product/route.ts`
+* **Tasks**:
+  * ✅ **URL Fetching**: Implemented server-side fetch with `cheerio` & `iconv-lite`.
+  * ✅ **Image Analysis**: Verified via existing logic.
+
+### 5.3 Checkout & Payment Features (✅ Completed)
+
+* **Goal**: Enable "Naver Smart Store" redirection and "Direct Purchase".
+* **File**: `src/app/checkout/page.tsx`, `src/lib/firebase/firestore.ts`
+* **Tasks**:
+  * ✅ **Naver Smart Store**: Redirection implemented.
+  * ✅ **Direct Purchase**: Implemented `createOrder`, shipping form, and cart clearing.
+  * ✅ **Order History**: Implemented `getOrders`.
+
+### 5.4 Deployment
+
+* **Goal**: Deploy to production.
+* **Tasks**:
+  * Run `npm run build`.
+  * Deploy to Firebase Hosting (`firebase deploy`).
+
+## 6. Future
+
+* Advanced Payment Gateway (PortOne).
+* Review Reviews system.

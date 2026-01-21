@@ -8,7 +8,9 @@ import {
   getDoc,
   setDoc,
   query,
-  orderBy
+  where,
+  orderBy,
+  DocumentData
 } from "firebase/firestore";
 import { firestore } from "./config";
 
@@ -35,7 +37,7 @@ export const getCart = async (userId: string) => {
 };
 
 // Set user's cart
-export const setCart = async (userId: string, items: any[]) => {
+export const setCart = async (userId: string, items: DocumentData[]) => {
   try {
     const cartRef = doc(firestore, CARTS_COLLECTION, userId);
     // Firestore does not support undefined values. JSON stringify/parse removes them.
@@ -49,7 +51,7 @@ export const setCart = async (userId: string, items: any[]) => {
 };
 
 // Add a new product
-export const addProduct = async (productData: any) => {
+export const addProduct = async (productData: DocumentData) => {
   try {
     const docRef = await addDoc(
       collection(firestore, PRODUCTS_COLLECTION),
@@ -79,27 +81,71 @@ export const getProducts = async () => {
   }
 };
 
-// Update a product
-export const updateProduct = async (productId: string, productData: any) => {
+// Update product
+export const updateProduct = async (
+  id: string,
+  updatedData: Partial<Omit<DocumentData, "id">> // Changed Product to DocumentData
+) => {
   try {
-    const productRef = doc(firestore, PRODUCTS_COLLECTION, productId);
-    await updateDoc(productRef, productData);
-    return true;
+    const productRef = doc(firestore, "products", id);
+    await updateDoc(productRef, updatedData);
   } catch (error) {
     console.error("Error updating product: ", error);
-    return false;
+    throw error;
   }
 };
 
-// Delete a product
-export const deleteProduct = async (productId: string) => {
+// Delete product
+export const deleteProduct = async (id: string) => {
   try {
-    const productRef = doc(firestore, PRODUCTS_COLLECTION, productId);
-    await deleteDoc(productRef);
-    return true;
+    await deleteDoc(doc(firestore, "products", id));
   } catch (error) {
     console.error("Error deleting product: ", error);
-    return false;
+    throw error;
+  }
+};
+
+// --- Order Functions ---
+
+// Create Order
+export const createOrder = async (orderData: DocumentData) => { // Changed any to DocumentData
+  try {
+    const ordersCollection = collection(firestore, "orders");
+    const docRef = await addDoc(ordersCollection, orderData);
+    return docRef.id;
+  } catch (error) {
+    console.error("Error creating order: ", error);
+    throw error;
+  }
+};
+
+// Get Orders (User specific or All)
+export const getOrders = async (userId?: string) => {
+  try {
+    const ordersCollection = collection(firestore, ORDERS_COLLECTION);
+    let q;
+
+    if (userId) {
+      q = query(
+        ordersCollection,
+        where("userId", "==", userId),
+        orderBy("createdAt", "desc")
+      );
+    } else {
+      q = query(
+        ordersCollection,
+        orderBy("createdAt", "desc")
+      );
+    }
+
+    const querySnapshot = await getDocs(q);
+    return querySnapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    }));
+  } catch (error) {
+    console.error("Error getting orders: ", error);
+    return [];
   }
 };
 
@@ -115,26 +161,8 @@ export const updateOrderStatus = async (orderId: string, status: string) => {
   }
 };
 
-// Get orders for a user (or all if guest/admin simulation)
-export const getOrders = async () => {
-  try {
-    const q = query(
-      collection(firestore, ORDERS_COLLECTION),
-      orderBy("createdAt", "desc")
-    );
-    const snapshot = await getDocs(q);
-    return snapshot.docs.map(doc => ({
-      id: doc.id,
-      ...doc.data()
-    }));
-  } catch (error) {
-    console.error("Error fetching orders:", error);
-    return [];
-  }
-};
-
 // Add a new order
-export const addOrder = async (orderData: any) => {
+export const addOrder = async (orderData: DocumentData) => {
   try {
     const docRef = await addDoc(
       collection(firestore, ORDERS_COLLECTION),
@@ -168,7 +196,7 @@ export const getCategories = async () => {
 };
 
 // Set (Create/Update) a category
-export const setCategory = async (categoryData: any) => {
+export const setCategory = async (categoryData: DocumentData) => {
   try {
     // If id is present in data, use it as doc ID. Otherwise auto-gen (though we prefer slugs)
     const categoryRef = doc(firestore, CATEGORIES_COLLECTION, categoryData.id);

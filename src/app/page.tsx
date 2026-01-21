@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useAuthContext } from "@/context/AuthContext";
-import { signOutUser } from "@/lib/firebase/auth";
 import { CartIcon } from "@/components/cart/CartIcon";
 import { CartView } from "@/components/cart/CartView";
 import { HeroVideoBackground } from "@/components/home/HeroVideoBackground";

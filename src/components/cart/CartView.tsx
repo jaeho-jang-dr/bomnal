@@ -24,6 +24,7 @@ export const CartView = ({ isOpen, onClose }: CartViewProps) => {
       // Only if we want to force select all on open.
       // Let's settle on: Default select ALL when items change significantly?
       // Simplest: Just initialize all as selected.
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       setSelectedItems(new Set(items.map(i => i.id)));
     }
   }, [items.length]); // Dependency on length change mainly
@@ -105,7 +106,7 @@ export const CartView = ({ isOpen, onClose }: CartViewProps) => {
                   key={item.id}
                   item={item}
                   isSelected={selectedItems.has(item.id)}
-                  onToggleSelect={toggleSelect}
+                  onToggleSelect={() => toggleSelect(item.id)}
                 />
               ))}
             </ul>

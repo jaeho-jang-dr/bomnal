@@ -10,7 +10,7 @@ interface Order {
     customer: string;
     total: number;
     status: string;
-    items?: any[];
+    items?: Record<string, unknown>[];
 }
 
 interface KanbanBoardProps {
@@ -27,7 +27,7 @@ const COLUMNS = [
 ];
 
 // Helper to simulate icons since we can't dynamic import easily in the array above without component wrapping
-function PackageIcon(props: any) {
+function PackageIcon(props: React.SVGProps<SVGSVGElement>) {
     return (
         <svg
             {...props}
@@ -54,6 +54,7 @@ export default function KanbanBoard({ initialOrders, onOrderUpdate }: KanbanBoar
     const [winReady, setWinReady] = useState(false);
 
     useEffect(() => {
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         setOrders(initialOrders);
         setWinReady(true);
     }, [initialOrders]);

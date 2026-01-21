@@ -15,7 +15,7 @@ interface AnalyzedData {
 interface SmartRegisterModalProps {
     isOpen: boolean;
     onClose: () => void;
-    onRegister: (product: any) => void;
+    onRegister: (product: Record<string, unknown>) => void;
 }
 
 export default function SmartRegisterModal({ isOpen, onClose, onRegister }: SmartRegisterModalProps) {
@@ -59,9 +59,9 @@ export default function SmartRegisterModal({ isOpen, onClose, onRegister }: Smar
 
             await sendAnalysisRequest(payload as { type: string; data: string });
 
-        } catch (error: any) {
+        } catch (error: unknown) {
             console.error("Analysis failed", error);
-            alert(`분석 실패: ${error.message}`);
+            alert(`분석 실패: ${error instanceof Error ? error.message : String(error)}`);
             setIsAnalyzing(false);
         }
     };

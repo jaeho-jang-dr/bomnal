@@ -5,6 +5,8 @@ import {
   signInWithGoogle,
   signInWithEmail,
   registerWithEmail,
+  signInWithNaver,
+  signInWithKakao,
 } from "@/lib/firebase/auth";
 import { Input } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
@@ -76,32 +78,70 @@ export const AuthModal = ({ onClose }: AuthModalProps) => {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-            <Button type="submit" className="w-full">
-              {isRegister ? "Register" : "Sign In"}
+            <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded-md transition-colors">
+              {isRegister ? "회원가입" : "로그인"}
             </Button>
           </div>
         </form>
+
         <div className="mt-4 text-center">
           <button
+            type="button"
             onClick={() => setIsRegister(!isRegister)}
             className="text-sm text-gray-600 hover:underline"
           >
             {isRegister
-              ? "Already have an account? Sign In"
-              : "Don't have an account? Register"}
+              ? "이미 계정이 있으신가요? 로그인"
+              : "계정이 없으신가요? 회원가입"}
           </button>
         </div>
-        <div className="flex items-center my-6">
-          <hr className="flex-grow" />
-          <span className="mx-4 text-sm text-gray-500">OR</span>
-          <hr className="flex-grow" />
+
+        <div className="relative my-6">
+          <div className="absolute inset-0 flex items-center">
+            <div className="w-full border-t border-gray-300"></div>
+          </div>
+          <div className="relative flex justify-center text-sm">
+            <span className="px-2 bg-white text-gray-500">SNS 계정으로 간편 로그인</span>
+          </div>
         </div>
-        <Button
-          onClick={handleGoogleSignIn}
-          className="w-full bg-blue-500 hover:bg-blue-600"
-        >
-          Sign In with Google
-        </Button>
+
+        <div className="space-y-3">
+          {/* Google Login - Standard Style */}
+          <button
+            type="button"
+            onClick={handleGoogleSignIn}
+            className="w-full flex items-center justify-center gap-2 px-4 py-3 border border-gray-300 rounded-lg bg-white text-gray-700 font-medium hover:bg-gray-50 transition-colors"
+          >
+            <span className="font-bold text-blue-500 text-xl">G</span>
+            <span>구글로 시작하기</span>
+          </button>
+
+          {/* Naver Login - Brand Green */}
+          <button
+            type="button"
+            onClick={async () => {
+              const user = await signInWithNaver();
+              if (user) onClose();
+            }}
+            className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-[#03C75A] text-white font-bold hover:bg-[#02b351] transition-colors"
+          >
+            <span className="font-black text-xl">N</span>
+            <span>네이버로 시작하기</span>
+          </button>
+
+          {/* Kakao Login - Brand Yellow */}
+          <button
+            type="button"
+            onClick={async () => {
+              const user = await signInWithKakao();
+              if (user) onClose();
+            }}
+            className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-[#FEE500] text-[#391B1B] font-bold hover:bg-[#fdd835] transition-colors"
+          >
+            <span className="font-black text-xl">K</span>
+            <span>카카오로 시작하기</span>
+          </button>
+        </div>
       </div>
     </div>
   );

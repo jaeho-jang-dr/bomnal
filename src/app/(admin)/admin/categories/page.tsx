@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { getCategories, setCategory, deleteCategory } from '@/lib/firebase/firestore';
 import { Plus, Edit2, Trash2, RotateCcw, Save, X } from 'lucide-react';
 
@@ -35,17 +35,16 @@ export default function CategoriesPage() {
         colorTo: '#000000'
     });
 
-    const fetchCategories = async () => {
-        setLoading(true);
+    const fetchCategories = useCallback(async () => {
         const data = await getCategories();
         // Sort by order or just default
         setCategories(data as CategoryData[]);
         setLoading(false);
-    };
+    }, []);
 
     useEffect(() => {
         fetchCategories();
-    }, []);
+    }, [fetchCategories]);
 
     const handleInitialize = async () => {
         if (!confirm('기존 카테고리가 덮어쓰여질 수 있습니다. 계속하시겠습니까?')) return;
@@ -66,12 +65,14 @@ export default function CategoriesPage() {
 
     const handleDelete = async (id: string) => {
         if (!confirm('정말 삭제하시겠습니까?')) return;
+        setLoading(true);
         await deleteCategory(id);
         fetchCategories();
     };
 
     const handleSave = async (e: React.FormEvent) => {
         e.preventDefault();
+        setLoading(true);
         await setCategory(currentCategory);
         setIsEditing(false);
         fetchCategories();

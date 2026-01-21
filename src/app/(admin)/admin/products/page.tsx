@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
   addProduct,
   getProducts,
@@ -36,14 +36,14 @@ const AdminProductsPage = () => {
   const [viewMode, setViewMode] = useState<'list' | 'grid'>('grid'); // Default to Grid for visual impact
   const [searchTerm, setSearchTerm] = useState('');
 
-  const fetchProducts = async () => {
+  const fetchProducts = useCallback(async () => {
     const productList = (await getProducts()) as Product[];
     setProducts(productList);
-  };
+  }, []);
 
   useEffect(() => {
     fetchProducts();
-  }, []);
+  }, [fetchProducts]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;

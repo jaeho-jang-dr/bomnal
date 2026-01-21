@@ -31,6 +31,7 @@ export function ProductDetailModal({ product, isOpen, onClose }: ProductDetailMo
 
     useEffect(() => {
         if (isOpen) {
+            // eslint-disable-next-line react-hooks/exhaustive-deps
             setQuantity(1);
             setSelectedOption(null);
         }

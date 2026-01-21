@@ -184,7 +184,7 @@ export default function Shop() {
                     {isDashboard ? ( // Dashboard Title
                         <div className="animate-in fade-in slide-in-from-bottom-4 duration-1000 ease-out text-center md:text-left">
                             <div className="inline-block px-3 py-1 mb-4 border border-black/10 dark:border-white/20 rounded-full bg-white/50 dark:bg-white/5 backdrop-blur-sm">
-                                <span className="text-xs font-bold tracking-[0.2em] uppercase text-gray-500 dark:text-gray-400">Dr. Jang's Collection</span>
+                                <span className="text-xs font-bold tracking-[0.2em] uppercase text-gray-500 dark:text-gray-400">Dr. Jang&apos;s Collection</span>
                             </div>
                             <h1 className="text-4xl md:text-6xl font-serif font-medium text-gray-900 dark:text-white mb-6 tracking-tight leading-tight">
                                 품격 있는 시니어 라이프,<br className="md:hidden" /> <span className="italic font-light">봄날</span>에서 시작하세요.
@@ -382,7 +382,7 @@ export default function Shop() {
                         <button className="hover:text-primary transition-colors" onClick={() => alert('준비 중입니다.')}>고객센터</button>
                     </div>
                     <p className="text-sm text-gray-400 dark:text-gray-500 max-w-md">
-                        &copy; {new Date().getFullYear()} Senior Shop. Dr. Jang's Orthopedic Solutions. All rights reserved.
+                        &copy; {new Date().getFullYear()} Senior Shop. Dr. Jang&apos;s Orthopedic Solutions. All rights reserved.
                     </p>
                 </div>
             </footer>

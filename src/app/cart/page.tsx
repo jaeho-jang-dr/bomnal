@@ -10,7 +10,7 @@ type PaymentStep = 'none' | 'method_select' | 'address_input' | 'direct_options'
 type DirectMethod = 'card' | 'transfer' | 'simple' | null;
 
 export default function CartPage() {
-    const { items, totalPrice, removeItem, removeItems } = useCartStore();
+    const { items, totalPrice, removeItems } = useCartStore();
     const [selectedItems, setSelectedItems] = useState<Set<string>>(new Set());
 
     // Payment State
@@ -25,17 +25,17 @@ export default function CartPage() {
     });
 
     // Derived state for compatibility (if needed) or refactor usage
-    const isProcessing = paymentStep === 'processing';
     const isSuccess = paymentStep === 'success';
 
     // Helper to generate unique key for selection
-    const generateItemKey = (item: CartItemType) => `${item.id} -${item.selectedOption || "default"} `;
+    const generateItemKey = (item: CartItemType) => `${item.id}-${item.selectedOption || "default"}`;
 
     // Auto-select all items initially
     useEffect(() => {
         if (items.length > 0 && selectedItems.size === 0 && !isSuccess) {
             setSelectedItems(new Set(items.map(generateItemKey)));
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [items.length]);
 
     const toggleSelect = (key: string) => {
@@ -350,21 +350,21 @@ export default function CartPage() {
                         {paymentStep === 'direct_options' && (
                             <div className="space-y-6">
                                 <div className="space-y-3">
-                                    <label className={`flex items - center p - 4 rounded - xl border - 2 cursor - pointer transition - all ${directMethod === 'card' ? 'border-primary bg-primary/5' : 'border-gray-200 dark:border-gray-700 hover:border-gray-300'} `}>
+                                    <label className={`flex items-center p-4 rounded-xl border-2 cursor-pointer transition-all ${directMethod === 'card' ? 'border-primary bg-primary/5' : 'border-gray-200 dark:border-gray-700 hover:border-gray-300'} `}>
                                         <input type="radio" name="pay" className="sr-only" checked={directMethod === 'card'} onChange={() => setDirectMethod('card')} />
                                         <span className="material-symbols-outlined text-2xl mr-3 text-gray-600">credit_card</span>
                                         <span className="font-bold text-gray-800 dark:text-gray-200">신용/체크카드</span>
                                         {directMethod === 'card' && <span className="material-symbols-outlined ml-auto text-primary">check_circle</span>}
                                     </label>
 
-                                    <label className={`flex items - center p - 4 rounded - xl border - 2 cursor - pointer transition - all ${directMethod === 'transfer' ? 'border-primary bg-primary/5' : 'border-gray-200 dark:border-gray-700 hover:border-gray-300'} `}>
+                                    <label className={`flex items-center p-4 rounded-xl border-2 cursor-pointer transition-all ${directMethod === 'transfer' ? 'border-primary bg-primary/5' : 'border-gray-200 dark:border-gray-700 hover:border-gray-300'} `}>
                                         <input type="radio" name="pay" className="sr-only" checked={directMethod === 'transfer'} onChange={() => setDirectMethod('transfer')} />
                                         <span className="material-symbols-outlined text-2xl mr-3 text-gray-600">account_balance</span>
                                         <span className="font-bold text-gray-800 dark:text-gray-200">실시간 계좌이체</span>
                                         {directMethod === 'transfer' && <span className="material-symbols-outlined ml-auto text-primary">check_circle</span>}
                                     </label>
 
-                                    <label className={`flex items - center p - 4 rounded - xl border - 2 cursor - pointer transition - all ${directMethod === 'simple' ? 'border-primary bg-primary/5' : 'border-gray-200 dark:border-gray-700 hover:border-gray-300'} `}>
+                                    <label className={`flex items-center p-4 rounded-xl border-2 cursor-pointer transition-all ${directMethod === 'simple' ? 'border-primary bg-primary/5' : 'border-gray-200 dark:border-gray-700 hover:border-gray-300'} `}>
                                         <input type="radio" name="pay" className="sr-only" checked={directMethod === 'simple'} onChange={() => setDirectMethod('simple')} />
                                         <span className="material-symbols-outlined text-2xl mr-3 text-yellow-500">payments</span>
                                         <span className="font-bold text-gray-800 dark:text-gray-200">간편결제 (네이버/카카오페이)</span>
@@ -375,7 +375,7 @@ export default function CartPage() {
                                 <button
                                     onClick={handleDirectPayment}
                                     disabled={!directMethod}
-                                    className={`w - full py - 4 rounded - xl font - bold text - xl text - white transition - all shadow - lg ${!directMethod ? 'bg-gray-300 cursor-not-allowed' : 'bg-primary hover:bg-primary-dark shadow-primary/30'} `}
+                                    className={`w-full py-4 rounded-xl font-bold text-xl text-white transition-all shadow-lg ${!directMethod ? 'bg-gray-300 cursor-not-allowed' : 'bg-primary hover:bg-primary-dark shadow-primary/30'} `}
                                 >
                                     {selectedTotal.toLocaleString()}원 결제하기
                                 </button>

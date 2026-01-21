@@ -402,8 +402,8 @@ export const seedProducts = async () => {
         await batch.commit();
         console.log("New products seeded successfully");
         return `성공! 카테고리 ${categories.length}개와 상품 ${products.length}개가 추가되었습니다.`;
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error("Error seeding products:", error);
-        return `에러 발생: ${error.message}`;
+        return `에러 발생: ${error instanceof Error ? error.message : String(error)}`;
     }
 };

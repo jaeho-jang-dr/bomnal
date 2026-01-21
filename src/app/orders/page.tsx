@@ -2,15 +2,8 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { getOrders } from "@/lib/firebase/firestore";
-
-interface OrderItem {
-    id: string;
-    productName: string;
-    price: number;
-    quantity: number;
-    image?: string;
-}
 
 interface Order {
     id: string;
@@ -86,7 +79,15 @@ export default function OrdersPage() {
                                     {order.items.map((item: any, idx) => (
                                         <li key={idx} className="flex items-center gap-3">
                                             {item.image && (
-                                                <img src={item.image} alt={item.name} className="size-12 rounded-lg object-cover bg-gray-100" />
+                                                <div className="relative size-12 flex-shrink-0">
+                                                    <Image
+                                                        src={item.image}
+                                                        alt={item.name}
+                                                        fill
+                                                        className="rounded-lg object-cover bg-gray-100"
+                                                        sizes="48px"
+                                                    />
+                                                </div>
                                             )}
                                             <div className="flex-1 min-w-0">
                                                 <div className="font-medium truncate text-gray-900 dark:text-gray-100">{item.name}</div>

@@ -6,7 +6,7 @@ export async function GET() {
     try {
         const result = await seedProducts();
         return NextResponse.json({ success: true, message: result });
-    } catch (error) {
+    } catch {
         return NextResponse.json({ success: false, error: 'Seeding failed' }, { status: 500 });
     }
 }

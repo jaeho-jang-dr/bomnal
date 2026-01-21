@@ -85,6 +85,49 @@ export default function LoginPage() {
                     </button>
                 </form>
 
+                <div className="my-8 flex items-center">
+                    <div className="flex-grow border-t border-gray-200 dark:border-gray-700"></div>
+                    <span className="flex-shrink-0 mx-4 text-gray-400 text-sm font-medium">또는 간편 로그인</span>
+                    <div className="flex-grow border-t border-gray-200 dark:border-gray-700"></div>
+                </div>
+
+                <div className="space-y-3">
+                    <button
+                        type="button"
+                        onClick={async () => {
+                            const { signInWithGoogle } = await import('@/lib/firebase/auth');
+                            const result = await signInWithGoogle();
+                            if (result.user) router.push('/shop');
+                        }}
+                        className="w-full bg-white text-gray-700 border border-gray-200 py-4 rounded-xl font-bold text-lg shadow-sm hover:bg-gray-50 transition-all transform hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2"
+                    >
+                        <span className="font-bold text-blue-500 text-xl">G</span> 구글로 시작하기
+                    </button>
+
+                    <button
+                        type="button"
+                        onClick={async () => {
+                            const { signInWithNaver } = await import('@/lib/firebase/auth');
+                            const user = await signInWithNaver();
+                            if (user) router.push('/shop');
+                        }}
+                        className="w-full bg-[#03C75A] text-white py-4 rounded-xl font-bold text-lg shadow-lg hover:bg-[#02b351] transition-all transform hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2"
+                    >
+                        <span className="font-black text-xl">N</span> 네이버로 시작하기
+                    </button>
+                    <button
+                        type="button"
+                        onClick={async () => {
+                            const { signInWithKakao } = await import('@/lib/firebase/auth');
+                            const user = await signInWithKakao();
+                            if (user) router.push('/shop');
+                        }}
+                        className="w-full bg-[#FEE500] text-[#391B1B] py-4 rounded-xl font-bold text-lg shadow-lg hover:bg-[#fdd835] transition-all transform hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2"
+                    >
+                        <span className="font-black text-xl">K</span> 카카오톡으로 시작하기
+                    </button>
+                </div>
+
                 <div className="mt-8 text-center">
                     <p className="text-gray-500">
                         아직 계정이 없으신가요?{' '}
