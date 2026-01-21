@@ -1,6 +1,42 @@
 
 import { NextRequest, NextResponse } from "next/server";
-import { visionModel } from "@/lib/gemini";
+import { genAI } from "@/lib/gemini";
+
+// List of models to try in order of preference (Better -> Faster -> Fallback)
+const CANDIDATE_MODELS = [
+    "gemini-1.5-pro-002",      // Latest Stable Pro
+    "gemini-1.5-flash-002",    // Latest Stable Flash
+    "gemini-2.0-flash-exp",    // Cutting edge (if available)
+    "gemini-1.5-pro",          // Standard Pro
+    "gemini-1.5-flash",        // Standard Flash
+];
+
+async function generateContentWithFallback(prompt: string, imagePart: any | null) {
+    let lastError = null;
+
+    for (const modelName of CANDIDATE_MODELS) {
+        try {
+            console.log(`Attempting analysis with model: ${modelName}`);
+            const model = genAI.getGenerativeModel({ model: modelName });
+
+            let result;
+            if (imagePart) {
+                result = await model.generateContent([prompt, imagePart]);
+            } else {
+                result = await model.generateContent(prompt);
+            }
+
+            const response = await result.response;
+            return response; // Success
+        } catch (error: any) {
+            console.warn(`Model ${modelName} failed:`, error.message);
+            lastError = error;
+            // Continue to next model
+        }
+    }
+
+    throw lastError || new Error("All AI models failed to respond.");
+}
 
 // Helper to clean JSON string from Markdown code blocks
 function cleanJsonString(text: string): string {
@@ -44,7 +80,7 @@ export async function POST(req: NextRequest) {
       }
     `;
 
-        let result;
+        let imagePart = null;
 
         if (type === 'image') {
             // Data is expected to be a Data URL: "data:image/png;base64,..."
@@ -61,20 +97,21 @@ export async function POST(req: NextRequest) {
                 }
             }
 
-            const imagePart = {
+            imagePart = {
                 inlineData: {
                     data: base64Data,
                     mimeType: mimeType,
                 },
             };
-
-            result = await visionModel.generateContent([prompt, imagePart]);
         } else {
             prompt += `\n\nAnalyze this Context/URL content: ${data}`;
-            result = await visionModel.generateContent(prompt);
         }
 
-        const responseText = result.response.text();
+        // Use fallback mechanism
+        const response = await generateContentWithFallback(prompt, imagePart);
+
+
+        const responseText = response.text();
         console.log("Gemini Response:", responseText); // Debug logging
 
         // Robust JSON extraction
