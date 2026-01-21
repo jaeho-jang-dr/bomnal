@@ -120,8 +120,12 @@ export const AuthModal = ({ onClose }: AuthModalProps) => {
           <button
             type="button"
             onClick={async () => {
-              const user = await signInWithNaver();
-              if (user) onClose();
+              try {
+                const user = await signInWithNaver();
+                if (user) onClose();
+              } catch (err: any) {
+                setError(err.message || "Naver login failed");
+              }
             }}
             className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-[#03C75A] text-white font-bold hover:bg-[#02b351] transition-colors"
           >
@@ -133,8 +137,12 @@ export const AuthModal = ({ onClose }: AuthModalProps) => {
           <button
             type="button"
             onClick={async () => {
-              const user = await signInWithKakao();
-              if (user) onClose();
+              try {
+                const user = await signInWithKakao();
+                if (user) onClose();
+              } catch (err: any) {
+                setError(err.message || "Kakao login failed");
+              }
             }}
             className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-[#FEE500] text-[#391B1B] font-bold hover:bg-[#fdd835] transition-colors"
           >
