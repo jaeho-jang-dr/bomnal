@@ -1,6 +1,8 @@
 import {
   GoogleAuthProvider,
   signInWithPopup,
+  signInWithRedirect,
+  getRedirectResult,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   signOut,
@@ -67,17 +69,22 @@ export const updateUserRole = async (uid: string, role: string) => {
 };
 
 export const signInWithNaver = async () => {
+  // Firebase Console 제공업체 ID: oidc.oidc.naver
   const provider = new OAuthProvider('oidc.oidc.naver');
   provider.addScope('openid');
   provider.addScope('profile');
   provider.addScope('email');
+
   try {
+    console.log('Starting Naver login with popup...');
     const result = await signInWithPopup(auth, provider);
     const user = result.user;
+    console.log('Naver login successful:', user.uid);
 
     // Check/Create User Doc
     const userDoc = await getUserDocument(user.uid);
     if (!userDoc) {
+      console.log('Creating new user document for Naver user');
       await setDoc(doc(firestore, "users", user.uid), {
         email: user.email,
         role: "user",
@@ -86,11 +93,20 @@ export const signInWithNaver = async () => {
     }
     return user;
   } catch (error: any) {
-    console.error("Naver Login Error:", error);
+    console.error("Naver Login Error Details:", {
+      code: error.code,
+      message: error.message,
+      fullError: error
+    });
+
     if (error.code === 'auth/operation-not-allowed') {
-      alert("네이버 로그인이 활성화되지 않았습니다. Firebase ID가 'oidc.oidc.naver'인지 확인해주세요.");
+      alert("네이버 로그인이 Firebase에서 활성화되지 않았습니다.");
+    } else if (error.code === 'auth/popup-closed-by-user') {
+      console.log('User closed the popup');
+    } else if (error.code === 'auth/cancelled-popup-request') {
+      console.log('Popup request was cancelled');
     } else {
-      alert(`로그인 실패: ${error.message}`);
+      alert(`네이버 로그인 실패: ${error.message}`);
     }
     throw error;
   }
