@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import CartManager from "@/components/cart/CartManager";
 import GlobalUI from "@/components/layout/GlobalUI";
+import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
   title: "Senior Shop",
@@ -22,11 +23,14 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className={`antialiased font-display font-sans`}>
+      <body className={`antialiased font-display font-sans flex flex-col min-h-screen`}>
         <AuthProvider>
           <GlobalUI />
           <CartManager />
-          {children}
+          <div className="flex-1">
+            {children}
+          </div>
+          <Footer />
         </AuthProvider>
       </body>
     </html>
