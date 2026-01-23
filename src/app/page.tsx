@@ -72,10 +72,10 @@ export default function Home() {
                 </span>
               </div>
               <h2 className="text-4xl font-extrabold text-white leading-[1.1] tracking-tight max-w-[80%]">
-                관절 건강을 위한 전문 케어
+                활기찬 일상을 위한 편안한 걸음
               </h2>
-              <p className="text-lg text-gray-200 font-medium max-w-[90%]">
-                닥터 스미스가 제안하는 일상의 편안함을 위한 정형외과적 솔루션.
+              <p className="text-lg text-gray-200 font-medium max-w-[95%] text-balance">
+                다시 찾아온 봄날처럼, 당신의 모든 순간이 더 가볍고 편안해집니다.
               </p>
               <button className="mt-2 flex items-center gap-2 bg-primary hover:bg-primary-dark text-white px-6 py-3.5 rounded-xl font-bold text-base shadow-lg transition-transform active:scale-95 cursor-pointer">
                 컬렉션 보기

@@ -13,7 +13,7 @@ import { SiteSettings, DEFAULT_SETTINGS } from '@/types/settings';
 // --- Components ---
 
 export default function AdminSettingsPage() {
-  const [activeTab, setActiveTab] = useState<'general' | 'business' | 'shop' | 'features'>('general');
+  const [activeTab, setActiveTab] = useState<'general' | 'business' | 'shop' | 'features' | 'banner'>('general');
   const [settings, setSettings] = useState<SiteSettings>(DEFAULT_SETTINGS);
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
@@ -31,11 +31,15 @@ export default function AdminSettingsPage() {
       if (docSnap.exists()) {
         const data = docSnap.data() as SiteSettings;
         // Merge with defaults to ensure all fields exist even if DB is partial
+        // Use a more robust merge for nested objects like banner which might be new
         setSettings({
+          ...DEFAULT_SETTINGS,
+          ...data,
           general: { ...DEFAULT_SETTINGS.general, ...data.general },
           business: { ...DEFAULT_SETTINGS.business, ...data.business },
           shop: { ...DEFAULT_SETTINGS.shop, ...data.shop },
           features: { ...DEFAULT_SETTINGS.features, ...data.features },
+          banner: { ...DEFAULT_SETTINGS.banner, ...(data.banner || {}) },
         });
       }
     } catch (error) {
@@ -78,6 +82,7 @@ export default function AdminSettingsPage() {
     { id: 'business', label: '사업자 정보', icon: Building2 },
     { id: 'shop', label: '쇼핑/운영', icon: ShoppingBag },
     { id: 'features', label: '기능/연동', icon: Fingerprint },
+    { id: 'banner', label: '오늘의 한마디', icon: CheckCircle2 },
   ];
 
   if (isLoading) {
@@ -241,6 +246,18 @@ export default function AdminSettingsPage() {
                     onChange={(e) => handleChange('shop', 'freeShippingThreshold', Number(e.target.value))}
                   />
                 </FormGroup>
+                <div className="col-span-1 md:col-span-2">
+                  <FormGroup label="네이버 스마트 스토어 URL">
+                    <Input
+                      value={settings.shop.naverStoreUrl || ''}
+                      onChange={(e) => handleChange('shop', 'naverStoreUrl', e.target.value)}
+                      placeholder="https://smartstore.naver.com/my-store"
+                    />
+                    <p className="text-xs text-gray-500 mt-1">
+                      * '네이버 페이로 구매' 버튼 클릭 시 이동할 스토어 주소입니다. 개설 후 이곳에 주소를 입력하세요.
+                    </p>
+                  </FormGroup>
+                </div>
               </div>
 
               <div className="mt-8 pt-6 border-t">
@@ -314,6 +331,43 @@ export default function AdminSettingsPage() {
                     dangerous
                   />
                 </div>
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'banner' && (
+            <div className="space-y-6">
+              <h2 className="text-xl font-semibold mb-4 border-b pb-2">메인 배너 설정 (오늘의 한마디)</h2>
+              <div className="space-y-4">
+                <div className="p-4 bg-blue-50 text-blue-800 rounded-lg text-sm mb-4">
+                  홈페이지 메인에 노출되는 환영 메시지와 이미지를 설정합니다.
+                  시니어 고객들에게 따뜻함과 즐거움을 줄 수 있는 내용을 입력해보세요.
+                </div>
+                <FormGroup label="제목">
+                  <Input
+                    value={settings.banner?.title || ''}
+                    onChange={(e) => handleChange('banner', 'title', e.target.value)}
+                    placeholder="예: 오늘도 봄날입니다"
+                  />
+                </FormGroup>
+                <FormGroup label="메시지 내용">
+                  <textarea
+                    className="w-full min-h-[100px] border rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    value={settings.banner?.message || ''}
+                    onChange={(e) => handleChange('banner', 'message', e.target.value)}
+                    placeholder="고객님을 위한 따뜻한 한마디를 적어주세요."
+                  />
+                </FormGroup>
+                <FormGroup label="이미지 URL">
+                  <Input
+                    value={settings.banner?.imageUrl || ''}
+                    onChange={(e) => handleChange('banner', 'imageUrl', e.target.value)}
+                    placeholder="https://example.com/image.jpg"
+                  />
+                  <p className="text-xs text-gray-500 mt-1">
+                    * Unsplash 등의 이미지 주소를 입력하거나, 나중에 이미지 업로드 기능을 추가할 수 있습니다.
+                  </p>
+                </FormGroup>
               </div>
             </div>
           )}

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, onSnapshot } from 'firebase/firestore';
 import { firestore } from '@/lib/firebase/config';
 import { SiteSettings, DEFAULT_SETTINGS } from '@/types/settings';
 import Link from 'next/link';
@@ -10,22 +10,22 @@ export default function Footer() {
     const [settings, setSettings] = useState<SiteSettings | null>(null);
 
     useEffect(() => {
-        const fetchSettings = async () => {
-            try {
-                const docRef = doc(firestore, 'settings', 'global');
-                const docSnap = await getDoc(docRef);
-                if (docSnap.exists()) {
-                    setSettings(docSnap.data() as SiteSettings);
-                } else {
-                    setSettings(DEFAULT_SETTINGS);
-                }
-            } catch (error) {
-                console.error('Failed to load footer settings:', error);
+        // Use onSnapshot for real-time updates
+        const docRef = doc(firestore, 'settings', 'global');
+        const unsubscribe = onSnapshot(docRef, (docSnap) => {
+            if (docSnap.exists()) {
+                setSettings(docSnap.data() as SiteSettings);
+            } else {
                 setSettings(DEFAULT_SETTINGS);
             }
-        };
+        }, (error) => {
+            console.error('Failed to subscribe to footer settings:', error);
+            // Fallback to defaults on error, but keep trying to listen or just set default once
+            setSettings(settings || DEFAULT_SETTINGS);
+        });
 
-        fetchSettings();
+        // Cleanup subscription on unmount
+        return () => unsubscribe();
     }, []);
 
     const business = settings?.business || DEFAULT_SETTINGS.business;

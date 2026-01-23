@@ -1,10 +1,12 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/hooks/useAuth';
 import { useCartStore } from '@/store/cartStore';
 import { createOrder } from '@/lib/firebase/firestore';
-import { serverTimestamp } from 'firebase/firestore';
+import { doc, getDoc, serverTimestamp } from 'firebase/firestore';
+import { firestore } from '@/lib/firebase/config';
+import { DEFAULT_SETTINGS, SiteSettings } from '@/types/settings';
 import Image from 'next/image';
 
 const CheckoutPage = () => {
@@ -12,6 +14,25 @@ const CheckoutPage = () => {
   const { user } = useAuth();
   const { items, totalPrice, clearCart } = useCartStore();
   const [loading, setLoading] = useState(false);
+  const [naverStoreUrl, setNaverStoreUrl] = useState(DEFAULT_SETTINGS.shop.naverStoreUrl);
+
+  useEffect(() => {
+    const fetchSettings = async () => {
+      try {
+        const docRef = doc(firestore, 'settings', 'global');
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          const data = docSnap.data() as SiteSettings;
+          if (data.shop?.naverStoreUrl) {
+            setNaverStoreUrl(data.shop.naverStoreUrl);
+          }
+        }
+      } catch (error) {
+        console.error('Failed to load settings:', error);
+      }
+    };
+    fetchSettings();
+  }, []);
 
   // Shipping Form State
   const [shippingInfo, setShippingInfo] = useState({
@@ -29,10 +50,11 @@ const CheckoutPage = () => {
 
   // 1. Naver Smart Store Redirection
   const handleNaverPay = () => {
-    // In reality, you'd might construct a deep link to specific products or just the store main page
-    // For now, redirect to a configured store URL
-    const NAVER_STORE_URL = 'https://smartstore.naver.com/bomnal_demo';
-    window.open(NAVER_STORE_URL, '_blank');
+    if (naverStoreUrl) {
+      window.open(naverStoreUrl, '_blank');
+    } else {
+      alert('네이버 스토어 주소가 설정되지 않았습니다.');
+    }
   };
 
   // 2. Direct Order Creation

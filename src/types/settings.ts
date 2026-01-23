@@ -19,12 +19,18 @@ export interface SiteSettings {
         freeShippingThreshold: number;
         enablePointSystem: boolean;
         pointAccumulationRate: number;
+        naverStoreUrl?: string;
     };
     features: {
         enableNaverLogin: boolean;
         enableKakaoLogin: boolean;
         enableGoogleLogin: boolean;
         maintenanceMode: boolean;
+    };
+    banner?: {
+        title: string;
+        message: string;
+        imageUrl?: string;
     };
 }
 
@@ -48,11 +54,17 @@ export const DEFAULT_SETTINGS: SiteSettings = {
         freeShippingThreshold: 50000,
         enablePointSystem: true,
         pointAccumulationRate: 1,
+        naverStoreUrl: 'https://smartstore.naver.com/bomnal_demo',
     },
     features: {
         enableNaverLogin: true,
         enableKakaoLogin: true,
         enableGoogleLogin: false,
         maintenanceMode: false,
+    },
+    banner: {
+        title: '오늘도 봄날입니다',
+        message: '나이가 드는 것은 낡아가는 것이 아니라 익어가는 것입니다. 오늘 하루도 가장 젊고 아름다운 날 되세요.',
+        imageUrl: 'https://images.unsplash.com/photo-1518105779142-d975f22f1b0a?q=80&w=2670&auto=format&fit=crop', // Uplifting flower/sunshine image
     },
 };
