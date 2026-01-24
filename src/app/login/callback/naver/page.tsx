@@ -1,9 +1,9 @@
 'use client';
 
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 
-export default function NaverLoginCallback() {
+function NaverLoginContent() {
     const searchParams = useSearchParams();
 
     useEffect(() => {
@@ -37,5 +37,13 @@ export default function NaverLoginCallback() {
                 <p>잠시만 기다려주세요.</p>
             </div>
         </div>
+    );
+}
+
+export default function NaverLoginCallback() {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <NaverLoginContent />
+        </Suspense>
     );
 }

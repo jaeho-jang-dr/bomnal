@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { signInWithCustomToken } from "firebase/auth";
 import { auth } from "@/lib/firebase/config";
 
-export default function LoginCallback() {
+function LoginCallbackContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const [status, setStatus] = useState("로그인 처리 중입니다...");
@@ -67,5 +67,13 @@ export default function LoginCallback() {
                 <div className="mt-4 animate-spin rounded-full h-8 w-8 border-b-2 border-green-500 mx-auto"></div>
             </div>
         </div>
+    );
+}
+
+export default function LoginCallback() {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <LoginCallbackContent />
+        </Suspense>
     );
 }

@@ -47,7 +47,7 @@ const DirectPayment = () => {
   return (
     <button
       onClick={handlePayment}
-      className="bg-blue-500 text-white p-2 rounded"
+      className="bg-primary hover:bg-primary-dark text-white p-2 rounded transition-colors"
     >
       Pay with Card
     </button>

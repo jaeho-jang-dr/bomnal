@@ -10,7 +10,7 @@ const PaymentSuccessPage = () => {
       <p className="mb-4">
         Thank you for your purchase. Your order is being processed.
       </p>
-      <Link href="/" className="text-blue-500">
+      <Link href="/" className="text-primary hover:text-primary-dark font-medium underline-offset-4 hover:underline">
         Return to Home
       </Link>
     </div>

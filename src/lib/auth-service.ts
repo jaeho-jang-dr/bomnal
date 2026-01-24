@@ -7,7 +7,7 @@ import {
     onAuthStateChanged,
     User
 } from 'firebase/auth';
-import { auth } from './firebase-config';
+import { auth } from './firebase/config';
 
 // Provider 인스턴스 생성
 const googleProvider = new GoogleAuthProvider();

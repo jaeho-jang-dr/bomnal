@@ -42,11 +42,11 @@ export function ProductCard({ product, onAdd, onClick }: ProductCardProps) {
             className="group rx-pad-card rounded-b-lg overflow-hidden transition-all duration-300 hover:-translate-y-1 cursor-pointer"
         >
             {/* Tag Badge */}
-            <div className="absolute top-2 left-0 z-20 flex justify-center items-center gap-1 pl-2">
-                <span className="material-symbols-outlined gold-cross text-lg font-bold text-grid-primary">
+            <div className="absolute top-2 left-0 z-20 flex justify-center items-center gap-1 pl-2 bg-white/90 backdrop-blur-sm pr-2 py-1 rounded-r-lg shadow-sm">
+                <span className="material-symbols-outlined gold-cross text-[20px] font-bold text-grid-primary">
                     verified
                 </span>
-                <span className="text-[8px] uppercase tracking-widest text-slate-400 font-serif font-bold">
+                <span className="text-xs uppercase tracking-wide text-slate-700 font-serif font-bold">
                     Dr.Jang Pick
                 </span>
             </div>
@@ -57,9 +57,9 @@ export function ProductCard({ product, onAdd, onClick }: ProductCardProps) {
                     e.stopPropagation();
                     toggleFavorite(product.id);
                 }}
-                className="absolute top-2 right-2 z-20 size-8 flex items-center justify-center rounded-full bg-white/80 backdrop-blur-sm text-gray-400 hover:text-red-500 hover:bg-white transition-all shadow-sm"
+                className="absolute top-2 right-2 z-20 w-11 h-11 flex items-center justify-center rounded-full bg-white/90 backdrop-blur-md text-gray-500 hover:text-red-500 hover:bg-white transition-all shadow-sm"
             >
-                <span className={`material-symbols-outlined text-xl transition-transform active:scale-95 ${isFav ? "text-red-500 fill-current" : ""}`} style={{ fontVariationSettings: isFav ? "'FILL' 1" : "'FILL' 0" }}>
+                <span className={`material-symbols-outlined text-[24px] transition-transform active:scale-95 ${isFav ? "text-red-500 fill-current" : ""}`} style={{ fontVariationSettings: isFav ? "'FILL' 1" : "'FILL' 0" }}>
                     favorite
                 </span>
             </button>
@@ -77,16 +77,16 @@ export function ProductCard({ product, onAdd, onClick }: ProductCardProps) {
             </div>
 
             {/* Content Card */}
-            <div className="relative z-10 px-3 pb-4 pt-3 flex flex-col gap-1 bg-white/90 backdrop-blur-sm -mt-4 mx-2 rounded-xl shadow-md border border-gray-100 dark:bg-gray-800 dark:border-gray-700">
-                <h3 className="font-bold text-sm text-slate-800 dark:text-gray-100 leading-tight line-clamp-2 h-10">
+            <div className="relative z-10 px-4 pb-5 pt-4 flex flex-col gap-2 bg-white/95 backdrop-blur-md -mt-4 mx-2 rounded-xl shadow-md border border-gray-100 dark:bg-gray-800 dark:border-gray-700">
+                <h3 className="font-bold text-lg text-slate-800 dark:text-gray-100 leading-tight line-clamp-2 h-auto min-h-[3rem]">
                     {product.name}
                 </h3>
-                <div className="flex items-end justify-between mt-2">
+                <div className="flex items-end justify-between mt-1">
                     <div className="flex flex-col">
-                        <span className="text-[10px] text-slate-400 font-medium mb-0.5">
+                        <span className="text-xs text-slate-500 font-bold mb-0.5">
                             가격
                         </span>
-                        <span className="text-base font-bold text-slate-900 dark:text-white font-sans">
+                        <span className="text-xl font-bold text-slate-900 dark:text-white font-sans">
                             ₩{product.price.toLocaleString()}
                         </span>
                     </div>
@@ -97,13 +97,13 @@ export function ProductCard({ product, onAdd, onClick }: ProductCardProps) {
                             e.stopPropagation();
                             onAdd(product);
                         }}
-                        className={`h-9 w-9 flex items-center justify-center rounded-lg shadow-lg transition-all active:scale-95 cursor-pointer ${isInCart
-                            ? "bg-green-100 text-green-600 ring-2 ring-green-500 ring-offset-1"
+                        className={`h-11 w-11 flex items-center justify-center rounded-xl shadow-lg transition-all active:scale-95 cursor-pointer ${isInCart
+                            ? "bg-green-100 text-green-700 ring-2 ring-green-500 ring-offset-1"
                             : "bg-grid-primary hover:bg-grid-primary-dark text-white shadow-primary/20"
                             }`}
                         title={isInCart ? "장바구니에 담겨있습니다" : "장바구니 담기"}
                     >
-                        <span className="material-symbols-outlined text-lg">
+                        <span className="material-symbols-outlined text-2xl">
                             {isInCart ? "shopping_cart_checkout" : "add_shopping_cart"}
                         </span>
                     </button>

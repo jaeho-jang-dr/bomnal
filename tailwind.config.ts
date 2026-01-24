@@ -33,6 +33,18 @@ const config: Config = {
                 "signature": ["cursive", "serif"], // Fallback for Home
                 "handwriting": ["var(--font-gloria)", "cursive"], // For Grid
             },
+            fontSize: {
+                // Senior-Friendly Text Scale (Base 18px, Min 14px)
+                "xs": ["14px", { lineHeight: "1.5" }],    // Replaces tiny text
+                "sm": ["16px", { lineHeight: "1.5" }],
+                "base": ["18px", { lineHeight: "1.6" }],  // New Base
+                "lg": ["20px", { lineHeight: "1.6" }],
+                "xl": ["24px", { lineHeight: "1.4" }],
+                "2xl": ["30px", { lineHeight: "1.3" }],
+                "3xl": ["36px", { lineHeight: "1.2" }],
+                "4xl": ["48px", { lineHeight: "1.1" }],
+                "5xl": ["60px", { lineHeight: "1" }],
+            },
             borderRadius: {
                 "lg": "0.5rem",
                 "xl": "0.75rem",

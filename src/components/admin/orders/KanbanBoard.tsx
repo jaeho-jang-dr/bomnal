@@ -89,11 +89,11 @@ export default function KanbanBoard({ initialOrders, onOrderUpdate }: KanbanBoar
         }
     };
 
-    if (!winReady) return <div>로딩 중...</div>;
+    if (!winReady) return <div className="p-8 text-center text-lg text-gray-500">로딩 중...</div>;
 
     return (
         <DragDropContext onDragEnd={onDragEnd}>
-            <div className="flex gap-6 overflow-x-auto pb-8 h-[calc(100vh-200px)] min-w-[1200px]">
+            <div className="flex flex-col lg:flex-row gap-8 lg:gap-6 lg:overflow-x-auto pb-8 h-auto lg:h-[calc(100vh-200px)] w-full">
                 {COLUMNS.map((col) => {
                     const colOrders = orders.filter(
                         (o) => o.status === col.id ||
@@ -101,13 +101,14 @@ export default function KanbanBoard({ initialOrders, onOrderUpdate }: KanbanBoar
                     );
 
                     return (
-                        <div key={col.id} className="flex-1 min-w-[300px] flex flex-col">
-                            <div className={`flex items-center justify-between p-4 rounded-t-xl border-b-2 ${col.bg} border-${col.color.split('-')[1]}-200`}>
-                                <div className="flex items-center gap-2">
-                                    <col.icon className={`w-5 h-5 ${col.color}`} />
-                                    <h3 className="font-bold text-gray-700">{col.title}</h3>
+                        <div key={col.id} className="flex-none w-full lg:w-[340px] flex flex-col">
+                            {/* Column Header */}
+                            <div className={`flex items-center justify-between p-5 rounded-t-2xl lg:rounded-t-xl border-b-2 ${col.bg} border-${col.color.split('-')[1]}-200 shadow-sm lg:shadow-none`}>
+                                <div className="flex items-center gap-3">
+                                    <col.icon className={`w-6 h-6 ${col.color}`} />
+                                    <h3 className="font-bold text-lg text-gray-800">{col.title}</h3>
                                 </div>
-                                <span className="bg-white px-2 py-0.5 rounded-full text-xs font-bold shadow-sm border text-gray-500">
+                                <span className="bg-white px-3 py-1 rounded-full text-sm font-bold shadow-sm border border-gray-100 text-gray-600">
                                     {colOrders.length}
                                 </span>
                             </div>
@@ -117,7 +118,7 @@ export default function KanbanBoard({ initialOrders, onOrderUpdate }: KanbanBoar
                                     <div
                                         ref={provided.innerRef}
                                         {...provided.droppableProps}
-                                        className={`flex-1 p-3 rounded-b-xl bg-gray-50/50 border border-t-0 border-gray-200 transition-colors ${snapshot.isDraggingOver ? 'bg-blue-50ring-2 ring-blue-100' : ''
+                                        className={`flex-1 p-4 rounded-b-2xl lg:rounded-b-xl bg-gray-50/80 border border-t-0 border-gray-200 transition-colors min-h-[150px] ${snapshot.isDraggingOver ? 'bg-blue-50 ring-2 ring-blue-100' : ''
                                             }`}
                                     >
                                         {colOrders.map((order, index) => (
@@ -127,24 +128,25 @@ export default function KanbanBoard({ initialOrders, onOrderUpdate }: KanbanBoar
                                                         ref={provided.innerRef}
                                                         {...provided.draggableProps}
                                                         {...provided.dragHandleProps}
-                                                        className={`bg-white p-4 mb-3 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all group ${snapshot.isDragging ? 'rotate-2 scale-105 shadow-xl ring-2 ring-primary' : ''
+                                                        className={`bg-white p-5 mb-4 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all group ${snapshot.isDragging ? 'rotate-1 scale-105 shadow-xl ring-2 ring-primary-500 z-50' : ''
                                                             }`}
                                                         style={provided.draggableProps.style}
                                                     >
-                                                        <div className="flex justify-between items-start mb-2">
-                                                            <span className="text-xs font-mono text-gray-400">#{order.id.slice(0, 8)}</span>
-                                                            <button className="text-gray-300 hover:text-gray-600">
-                                                                <MoreVertical size={16} />
+                                                        <div className="flex justify-between items-start mb-3">
+                                                            <span className="text-sm font-mono text-gray-400 bg-gray-50 px-2 py-1 rounded">#{order.id.slice(0, 8)}</span>
+                                                            <button className="text-gray-300 hover:text-gray-600 p-1 rounded-full hover:bg-gray-100 transition-colors">
+                                                                <MoreVertical size={20} />
                                                             </button>
                                                         </div>
-                                                        <h4 className="font-bold text-gray-900 mb-1">{order.customer || 'Guest Guest'}</h4>
-                                                        <p className="text-sm text-gray-500 mb-3 line-clamp-1">
+                                                        <h4 className="font-bold text-lg text-gray-900 mb-2">{order.customer || 'Guest Guest'}</h4>
+                                                        <p className="text-base text-gray-600 mb-4 line-clamp-1">
                                                             {order.items ? `${order.items.length} items` : `Total: ₩${order.total?.toLocaleString()}`}
                                                         </p>
 
-                                                        <div className="flex justify-between items-center mt-auto pt-3 border-t border-gray-100">
-                                                            <span className="font-bold text-gray-900">₩{order.total?.toLocaleString()}</span>
-                                                            <span className="text-xs text-gray-400 bg-gray-50 px-2 py-1 rounded">
+                                                        <div className="flex justify-between items-center mt-auto pt-4 border-t border-gray-100">
+                                                            <span className="font-bold text-lg text-gray-900">₩{order.total?.toLocaleString()}</span>
+                                                            <span className="text-sm text-gray-500 flex items-center gap-1">
+                                                                <Clock size={14} />
                                                                 {new Date().toLocaleDateString()}
                                                             </span>
                                                         </div>

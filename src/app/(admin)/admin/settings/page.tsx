@@ -39,7 +39,12 @@ export default function AdminSettingsPage() {
           business: { ...DEFAULT_SETTINGS.business, ...data.business },
           shop: { ...DEFAULT_SETTINGS.shop, ...data.shop },
           features: { ...DEFAULT_SETTINGS.features, ...data.features },
-          banner: { ...DEFAULT_SETTINGS.banner, ...(data.banner || {}) },
+          banner: {
+            title: "", 
+            message: "", 
+            ...DEFAULT_SETTINGS.banner, 
+            ...(data.banner || {}) 
+          },
         });
       }
     } catch (error) {
